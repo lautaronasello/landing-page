@@ -50,10 +50,10 @@ export default function Navigate() {
               PRODUCTOS
             </Link>
           </Nav.Link>
-          <Nav.Link href="#">
+          <Nav.Link href="#home">
             <Link
               activeClass="active"
-              to="contacto"
+              to="cont"
               spy={true}
               smooth={true}
               offset={-70}

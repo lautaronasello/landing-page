@@ -3,12 +3,11 @@ import { Container, Row, Col } from "react-bootstrap";
 
 export default function Who(props) {
   return (
-    <Container style={{ height: "60vh" }}>
+    <Container id="who" style={{ height: "60vh" }}>
       <Row>
         <Col
           className="p-3 rounded shadow"
           md={12}
-          id="who"
           style={{ backgroundColor: "#FBE9E7" }}
         >
           <h3>{props.title}</h3>
