@@ -1,19 +1,67 @@
 import { React } from "react";
 import { Navbar, Nav } from "react-bootstrap";
+import { Link, animateScroll as scroll } from "react-scroll";
 
 export default function Navigate() {
+  function scrollToTop() {
+    scroll.scrollToTop();
+  }
   return (
     <Navbar expand="lg" className="bg-nav shadow bg-gradient fixed-top">
-      <Navbar.Brand href="#home" className="mx-3">
+      <Navbar.Brand onClick={scrollToTop} className="mx-3 hand">
         MenosCAoSxFAVOR
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="#home">INICIO</Nav.Link>
-          <Nav.Link href="#link">PRODUCTOS</Nav.Link>
-          <Nav.Link href="#link">QUIENES SOMOS</Nav.Link>
-          <Nav.Link href="#link">CONTACTO</Nav.Link>
+          <Nav.Link>
+            <Link
+              activeClass="active"
+              to="who"
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={1200}
+            >
+              INICIO
+            </Link>
+          </Nav.Link>
+          <Nav.Link>
+            <Link
+              activeClass="active"
+              to="who"
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={1200}
+            >
+              QUIENES SOMOS
+            </Link>
+          </Nav.Link>
+          <Nav.Link href="#home">
+            <Link
+              activeClass="active"
+              to="who"
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={1200}
+            >
+              PRODUCTOS
+            </Link>
+          </Nav.Link>
+          <Nav.Link href="#home">
+            <Link
+              activeClass="active"
+              to="who"
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={1200}
+            >
+              CONTACTO
+            </Link>
+          </Nav.Link>
         </Nav>
         <a
           href="https://www.instagram.com/menoscaosporfavor/"

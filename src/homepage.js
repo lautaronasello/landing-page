@@ -7,22 +7,30 @@ export default function HomePage() {
   return (
     <Fragment>
       <Navigate />
-      <div className="splash">
+      <div
+        className="d-flex justify-content-center align-items-center splash"
+        style={{ minHeight: "100vh" }}
+      >
         <Container>
           <Row className="justify-content-center ">
-            <Col xs lg="2"></Col>
-            <Col md="auto" className="text-center m-5 p-5">
+            <Col md={8} className="text-center mt-5 pt-5 mb-4">
               <h1>MenosCAoSxFAVOR</h1>
+              <p className="label">
+                Enemigas de la procastinacion y del descontrol nos encontramos
+                en Cordoba pero{" "}
+                <strong>
+                  hacemos envios a <mark>TODO EL PAIS</mark>
+                </strong>
+              </p>
             </Col>
-            <Col xs lg="2"></Col>
           </Row>
         </Container>
         <Pagination />
       </div>
-      <br />
-      <Container>
+
+      <Container className="my-5 pt-5 ">
         <Row>
-          <Col md={12} style={{ backgroundColor: "#FBE9E7" }}>
+          <Col md={12} id="who" style={{ backgroundColor: "#FBE9E7" }}>
             <h3>Quienes somos?</h3>
             <p class="lead">
               ¡Hola! Bienvenido/a al mundo de MENOS CAOS 🪐🤸🏻‍♀. Primero lo

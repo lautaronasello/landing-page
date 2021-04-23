@@ -16,7 +16,7 @@ code {
 }
 
 html {
-  background-color: rgb(251, 233, 231, 0.5);
+  scroll-behavior: smooth;
 }
 
 h1,
@@ -26,5 +26,9 @@ h3 {
 }
 
 .w-50 {
-  width: 50% !important;
+  width: 70% !important;
+}
+
+.hand {
+  cursor: pointer;
 }
