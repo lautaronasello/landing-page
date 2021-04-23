@@ -4,12 +4,14 @@ import { Container, Row, Col } from "react-bootstrap";
 import "./homepage.css";
 import Pagination from "./components/carousel";
 import Who from "./components/who";
+import Store from "./components/store";
 
 export default function HomePage() {
   return (
     <Fragment>
       <Navigate />
       <div
+        id="inicio"
         className="d-flex justify-content-center align-items-center splash back "
         style={{ minHeight: "100vh" }}
       >
@@ -52,6 +54,7 @@ export default function HomePage() {
             copados que, acompañados por un servicio de organización integral,
             te van a facilitar la rutina 💛."
       />
+      <Store />
     </Fragment>
   );
 }

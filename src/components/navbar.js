@@ -17,7 +17,7 @@ export default function Navigate() {
           <Nav.Link>
             <Link
               activeClass="active"
-              to="who"
+              to="inicio"
               spy={true}
               smooth={true}
               offset={-70}
@@ -41,7 +41,7 @@ export default function Navigate() {
           <Nav.Link href="#home">
             <Link
               activeClass="active"
-              to="who"
+              to="store"
               spy={true}
               smooth={true}
               offset={-70}
@@ -50,10 +50,10 @@ export default function Navigate() {
               PRODUCTOS
             </Link>
           </Nav.Link>
-          <Nav.Link href="#home">
+          <Nav.Link href="#">
             <Link
               activeClass="active"
-              to="who"
+              to="contacto"
               spy={true}
               smooth={true}
               offset={-70}

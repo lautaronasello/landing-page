@@ -40,3 +40,16 @@ h3 {
 .hand {
   cursor: pointer;
 }
+
+.card-img-top {
+  width: 17.9rem !important;
+  height: 19rem !important;
+}
+
+.nav-item > .active {
+  border-bottom: 1px solid #333;
+}
+
+.active {
+  color: rgba(0, 0, 0, 0.5);
+}
