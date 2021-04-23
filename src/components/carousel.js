@@ -6,7 +6,7 @@ import gangas from "../gangas.jpg";
 export default function Pagination() {
   return (
     <Container>
-      <Carousel>
+      <Carousel className="carousel-dark carousel-fade">
         <Carousel.Item className="text-center m-0">
           <img
             className="shadow w-50"

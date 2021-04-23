@@ -13,7 +13,11 @@ export default function HomePage() {
       >
         <Container>
           <Row className="justify-content-center ">
-            <Col md={8} className="text-center mt-5 pt-5 mb-4">
+            <Col
+              md={8}
+              className="text-center m-5 p-5 mb-4"
+              style={{ background: "#e6c4a9" }}
+            >
               <h1>MenosCAoSxFAVOR</h1>
               <p className="label">
                 Enemigas de la procastinacion y del descontrol nos encontramos
@@ -30,7 +34,12 @@ export default function HomePage() {
 
       <Container className="my-5 pt-5 ">
         <Row>
-          <Col md={12} id="who" style={{ backgroundColor: "#FBE9E7" }}>
+          <Col
+            className="p-3"
+            md={12}
+            id="who"
+            style={{ backgroundColor: "#FBE9E7" }}
+          >
             <h3>Quienes somos?</h3>
             <p class="lead">
               ¡Hola! Bienvenido/a al mundo de MENOS CAOS 🪐🤸🏻‍♀. Primero lo
