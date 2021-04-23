@@ -6,7 +6,7 @@ export default function Who(props) {
     <Container className=" " style={{ height: "60vh" }}>
       <Row>
         <Col
-          className="p-3 border border-dark rounded"
+          className="p-3 border border-dark rounded shadow"
           md={12}
           id="who"
           style={{ backgroundColor: "#FBE9E7" }}

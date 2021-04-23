@@ -10,14 +10,14 @@ export default function HomePage() {
     <Fragment>
       <Navigate />
       <div
-        className="d-flex justify-content-center align-items-center splash back"
+        className="d-flex justify-content-center align-items-center splash back "
         style={{ minHeight: "100vh" }}
       >
         <Container>
           <Row className="justify-content-center ">
             <Col
               md={8}
-              className="text-center m-5 p-5 mb-4"
+              className="text-center m-5 p-5 mb-4 shadow"
               style={{ background: "#e6c4a9" }}
             >
               <h1>MenosCAoSxFAVOR</h1>
