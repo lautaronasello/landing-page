@@ -5,36 +5,45 @@ import "./homepage.css";
 import Pagination from "./components/carousel";
 import Who from "./components/who";
 import Store from "./components/store";
+import Contact from "./components/contact";
 
 export default function HomePage() {
   return (
     <Fragment>
       <Navigate />
-      <div
-        id="inicio"
-        className="d-flex justify-content-center align-items-center splash back "
-        style={{ minHeight: "100vh" }}
-      >
-        <Container>
-          <Row className="justify-content-center ">
-            <Col
-              md={8}
-              className="text-center m-5 p-5 mb-4 shadow"
-              style={{ background: "#e6c4a9" }}
-            >
-              <h1>MenosCAoSxFAVOR</h1>
-              <p className="label">
-                Enemigas de la procastinacion y del descontrol nos encontramos
-                en Cordoba pero{" "}
-                <strong>
-                  hacemos envios a <mark>TODO EL PAIS</mark>
-                </strong>
-              </p>
+      <div style={{ minHeight: "100vh", backgroundColor: "#fff8e1" }}>
+        <Container className="text-center mt-5 p-5" id="inicio">
+          <Row>
+            <Col md={12}>
+              <h1 className="display-1 p-3">Bienvenido!</h1>
             </Col>
           </Row>
         </Container>
-        <Pagination />
+        <div className="d-flex justify-content-center align-items-center splash back ">
+          <Container>
+            <Row className="justify-content-center ">
+              <Col
+                md={8}
+                className="text-center  p-5 mb-4 shadow"
+                style={{ background: "#ecd3c0" }}
+              >
+                <h1>MenosCAoSxFAVOR</h1>
+                <p className="label">
+                  Enemigas de la procastinacion y del descontrol nos encontramos
+                  en Cordoba pero{" "}
+                  <strong>
+                    hacemos envios a <mark>TODO EL PAIS</mark>
+                  </strong>
+                </p>
+              </Col>
+            </Row>
+          </Container>
+          <Pagination />
+        </div>
       </div>
+      <br />
+      <hr className="m-auto" style={{ color: "#212121", width: "85%" }} />
+
       <Who
         title="Quienes Somos?"
         description="¡Hola! Bienvenido/a al mundo de MENOS CAOS 🪐🤸🏻‍♀. Primero lo
@@ -55,6 +64,7 @@ export default function HomePage() {
             te van a facilitar la rutina 💛."
       />
       <Store />
+      <Contact />
     </Fragment>
   );
 }

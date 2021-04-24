@@ -3,7 +3,11 @@ import { Container, Row, Col } from "react-bootstrap";
 
 export default function Who(props) {
   return (
-    <Container id="who" style={{ height: "60vh" }}>
+    <Container
+      className="d-flex justify-content-center align-items-center"
+      id="who"
+      style={{ height: "70vh" }}
+    >
       <Row>
         <Col
           className="p-3 rounded shadow"

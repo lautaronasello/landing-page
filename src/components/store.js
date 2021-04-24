@@ -3,9 +3,16 @@ import { Container, Row, Col } from "react-bootstrap";
 import Products from "./products";
 export default function Store() {
   return (
-    <div id="store" className="py-5" style={{ background: "#fbe9e7" }}>
+    <div className="py-5" style={{ background: "#ecd3c0" }}>
       <Container>
-        <Row className=" ">
+        <Row>
+          <Col md={12}>
+            <h1 id="store" className="display-3 text-center mb-5">
+              Tiendita
+            </h1>
+          </Col>
+        </Row>
+        <Row>
           <Col md={4}>
             <Products
               img="https://instagram.fcor2-2.fna.fbcdn.net/v/t51.2885-15/e35/s1080x1080/135717443_3827264750657489_4279301282548829338_n.jpg?tp=1&_nc_ht=instagram.fcor2-2.fna.fbcdn.net&_nc_cat=105&_nc_ohc=p047falJlb4AX-kpDQi&edm=AP_V10EAAAAA&ccb=7-4&oh=0dbc191cc429a920871c5fec8c0a8e60&oe=60A91EBD&_nc_sid=4f375e"

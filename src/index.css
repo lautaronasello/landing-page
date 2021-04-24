@@ -44,6 +44,7 @@ h3 {
 .card-img-top {
   width: 21.8rem !important;
   height: 19rem !important;
+  border-radius: 0 !important;
 }
 
 .nav-link > .active {
