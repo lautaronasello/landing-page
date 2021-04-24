@@ -1,7 +1,7 @@
 import firebase from "firebase";
 import "firebase/auth";
 
-var firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyDVZURkSbdfpEzJPka6ydK_rcIid_YeuaA",
   authDomain: "menoscaosxfavor.firebaseapp.com",
   projectId: "menoscaosxfavor",
@@ -13,3 +13,5 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
+
+export default firebaseConfig;
