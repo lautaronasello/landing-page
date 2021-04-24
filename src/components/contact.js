@@ -1,6 +1,28 @@
 import React from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
+import emailjs from "emailjs-com";
+
 export default function Contact() {
+  function sendEmail(e) {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "service_gmail",
+        "template_menoscaos",
+        e.target,
+        "user_AWfTGKV1KutMrQp821o8P"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+    e.target.reset();
+  }
   return (
     <Container>
       <Row>
@@ -14,22 +36,40 @@ export default function Contact() {
       </Row>
       <Row>
         <Col>
-          <Form className="py-5">
+          <Form onSubmit={sendEmail} className="py-5">
             <Form.Group controlId="exampleForm.ControlInput1">
+              <Form.Label>Nombre </Form.Label>
+              <Form.Control
+                name="name"
+                type="text"
+                placeholder="Tu Nombre :)"
+                className="mb-2"
+              />
               <Form.Label>Email </Form.Label>
-              <Form.Control type="email" placeholder="nombre@ejemplo.com" />
+              <Form.Control
+                name="email"
+                type="email"
+                placeholder="nombre@ejemplo.com"
+                className="mb-2"
+              />
+              <Form.Label>Asunto </Form.Label>
+              <Form.Control
+                name="asunto"
+                type="text"
+                placeholder="Promos de esta semana"
+                className="mb-2"
+              />
             </Form.Group>
             <Form.Group controlId="exampleForm.ControlTextarea1">
               <Form.Label>Mensaje</Form.Label>
-              <Form.Control as="textarea" rows={3} />
+              <Form.Control as="textarea" name="message" rows={3} />
             </Form.Group>
             <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-              <button
+              <input
                 className="btn btn-outline-secondary me-md-2"
-                type="button"
-              >
-                Enviar
-              </button>
+                type="submit"
+                value="Enviar!"
+              />
             </div>{" "}
           </Form>
         </Col>
