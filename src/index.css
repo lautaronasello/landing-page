@@ -33,16 +33,12 @@ h3 {
   color: #212121 !important;
 }
 
-.w-50 {
-  width: 70% !important;
-}
-
 .hand {
   cursor: pointer;
 }
 
 .card-img-top {
-  width: 21.8rem !important;
+  width: 100% !important;
   height: 19rem !important;
   border-radius: 0 !important;
 }

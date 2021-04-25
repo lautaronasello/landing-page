@@ -24,11 +24,11 @@ export default function Contact() {
     e.target.reset();
   }
   return (
-    <Container>
+    <Container id="contact">
       <Row>
-        <Col className="text-center m-5">
+        <Col className="text-center mt-5">
           <h1 className="display-3">Contacto</h1>
-          <p className="text-start lead">
+          <p className="lead">
             Cualquier duda o consulta podes mandarnos un mail o hablarnos por
             nuestras redes sociales!
           </p>

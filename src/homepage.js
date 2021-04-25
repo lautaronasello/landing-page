@@ -11,42 +11,46 @@ export default function HomePage() {
   return (
     <Fragment>
       <Navigate />
-      <div style={{ minHeight: "100vh", backgroundColor: "#fff8e1" }}>
-        <Container className="text-center mt-5 p-5" id="inicio">
-          <Row>
-            <Col md={12}>
-              <h1 className="display-1 p-3">Bienvenido!</h1>
-            </Col>
-          </Row>
-        </Container>
-        <div className="d-flex justify-content-center align-items-center splash back ">
-          <Container>
-            <Row className="justify-content-center ">
-              <Col
-                md={8}
-                className="text-center  p-5 mb-4 shadow"
-                style={{ background: "#ecd3c0" }}
-              >
-                <h1>MenosCAoSxFAVOR</h1>
-                <p className="label">
-                  Enemigas de la procastinacion y del descontrol nos encontramos
-                  en Cordoba pero{" "}
-                  <strong>
-                    hacemos envios a <mark>TODO EL PAIS</mark>
-                  </strong>
-                </p>
-              </Col>
-            </Row>
-          </Container>
-          <Pagination />
-        </div>
-      </div>
-      <br />
-      <hr className="m-auto" style={{ color: "#212121", width: "85%" }} />
-
-      <Who
-        title="Quienes Somos?"
-        description="¡Hola! Bienvenido/a al mundo de MENOS CAOS 🪐🤸🏻‍♀. Primero lo
+      <Container
+        className="text-center mt-3 pt-4 back align-items-center"
+        id="inicio"
+      >
+        <Row>
+          <Col md={12}>
+            <h1 className="display-1 p-3">Bienvenido!</h1>
+          </Col>
+        </Row>
+        <Row className="justify-content-center">
+          <Col
+            md={8}
+            className="text-center p-5 shadow"
+            style={{ background: "#ecd3c0" }}
+          >
+            <h1>MenosCAoSxFAVOR</h1>
+            <p className="label">
+              Enemigas de la procastinacion y del descontrol nos encontramos en
+              Cordoba pero{" "}
+              <strong>
+                hacemos envios a <mark>TODO EL PAIS</mark>
+              </strong>
+            </p>
+          </Col>
+        </Row>
+        <Row className="text-center justify-content-center my-5">
+          <Col md={8}>
+            <Pagination />
+          </Col>
+        </Row>
+        <Row>
+          <Col md={12}>
+            <hr className="m-auto" style={{ color: "#212121" }} id="who" />
+          </Col>
+        </Row>
+      </Container>
+      <Container className="justify-content-center my-5 py-5">
+        <Who
+          title="Quienes Somos?"
+          description="¡Hola! Bienvenido/a al mundo de MENOS CAOS 🪐🤸🏻‍♀. Primero lo
             primero, nos presentamos. Somos Agus 🦸🏽‍♀ y Mulan 🦹🏻‍♀, enemigas de
             la desorganizaciòn y emprendedoras de nacimiento; juntas formamos el
             #dreamteam de @menoscaosporfavor. Menos Caos nació frente a la
@@ -62,8 +66,17 @@ export default function HomePage() {
             desorganización 💪🏼👊🏼. Queremos compartir con vos productos super
             copados que, acompañados por un servicio de organización integral,
             te van a facilitar la rutina 💛."
-      />
-      <Store />
+        />
+      </Container>
+      <div
+        className="text-center p-4 align-items-center"
+        id="inicio"
+        style={{ background: "#ecd3c0" }}
+      >
+        <Container>
+          <Store />
+        </Container>
+      </div>
       <Contact />
     </Fragment>
   );

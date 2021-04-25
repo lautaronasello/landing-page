@@ -53,7 +53,7 @@ export default function Navigate() {
           <Nav.Link href="#home">
             <Link
               activeClass="active"
-              to="cont"
+              to="contact"
               spy={true}
               smooth={true}
               offset={-70}
