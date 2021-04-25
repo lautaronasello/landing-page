@@ -11,13 +11,12 @@ export default function HomePage() {
   return (
     <Fragment>
       <Navigate />
-      <Container
-        className="text-center mt-3 pt-4 back align-items-center"
-        id="inicio"
-      >
+      <Container className="text-center mt-3 pt-4 back align-items-center">
         <Row>
-          <Col md={12}>
-            <h1 className="display-1 p-3">Bienvenido!</h1>
+          <Col>
+            <h1 id="inicio" className="display-1 my-3">
+              Bienvenido!
+            </h1>
           </Col>
         </Row>
         <Row className="justify-content-center">

@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Button } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export default function Landing() {
@@ -8,21 +8,22 @@ export default function Landing() {
       className="d-flex justify-content-center align-items-center"
       style={{ minHeight: "100vh" }}
     >
-      <div className="text-center">
-        <h1 className="display-1">
-          <strong>MenosCAoS</strong>
-          <mark>X FAVOR</mark>
-        </h1>
-        <p className="lead mt-5">
-          Somos Agus 🦸🏽‍♀ y Mulan 🦹🏻‍♀️ 📚 Organización bajada a tierra 🌏 📍
-          Córdoba Capital
-        </p>
-        <Link to="homepage">
-          <Button variant="outline-secondary" className="m-3">
-            Entrar
-          </Button>
-        </Link>
-      </div>
+      <Row>
+        <Col className="text-center">
+          <h1 className="display-3">
+            <strong>MenosCAoS</strong> X FAVOR
+          </h1>
+          <p className="lead mt-5">
+            Somos Agus 🦸🏽‍♀ y Mulan 🦹🏻‍♀️ 📚 Organización bajada a tierra 🌏 📍
+            Córdoba Capital
+          </p>
+          <Link to="homepage">
+            <Button variant="outline-secondary" className="m-3">
+              Entrar
+            </Button>
+          </Link>
+        </Col>
+      </Row>
     </Container>
   );
 }
