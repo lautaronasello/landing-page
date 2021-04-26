@@ -38,7 +38,7 @@ export default function Navigate() {
               QUIENES SOMOS
             </Link>
           </Nav.Link>
-          <Nav.Link href="#home">
+          <Nav.Link>
             <Link
               activeClass="active"
               to="store"
@@ -50,7 +50,7 @@ export default function Navigate() {
               PRODUCTOS
             </Link>
           </Nav.Link>
-          <Nav.Link href="#home">
+          <Nav.Link>
             <Link
               activeClass="active"
               to="contact"

@@ -27,7 +27,7 @@ export default function Contact() {
     <Container id="contact">
       <Row>
         <Col className="text-center mt-5">
-          <h1 className="display-3">Contacto</h1>
+          <h1 className="display-4">Contacto</h1>
           <p className="lead">
             Cualquier duda o consulta podes mandarnos un mail o hablarnos por
             nuestras redes sociales!

@@ -5,22 +5,18 @@ import { Link } from "react-router-dom";
 export default function Landing() {
   return (
     <Container
-      className="d-flex justify-content-center align-items-center"
+      className="text-center d-flex align-items-center justify-content-center mx-auto"
       style={{ minHeight: "100vh" }}
     >
       <Row>
-        <Col className="text-center">
-          <h1 className="display-3">
-            <strong>MenosCAoS</strong> X FAVOR
-          </h1>
+        <Col sm={12} md={12} lg={12} xl={12} className="px-4">
+          <h1 className="display-4">MenosCAoS X FAVOR</h1>
           <p className="lead mt-5">
-            Somos Agus 🦸🏽‍♀ y Mulan 🦹🏻‍♀️ 📚 Organización bajada a tierra 🌏 📍
-            Córdoba Capital
+            Somos Agus 🦸🏽‍♀ y Mulan 🦹🏻‍♀️ 📚 Organización bajada a tierra 🌏 <br />
+            📍 Córdoba Capital
           </p>
           <Link to="homepage">
-            <Button variant="outline-secondary" className="m-3">
-              Entrar
-            </Button>
+            <Button variant="outline-secondary">Entrar</Button>
           </Link>
         </Col>
       </Row>

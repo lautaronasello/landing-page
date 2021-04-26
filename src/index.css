@@ -17,20 +17,15 @@ code {
     monospace;
 }
 
-/* #fff8e1 */
-
 .bg-nav {
   background-color: #fbe9e7;
 }
 
 html {
   scroll-behavior: smooth;
-}
-
-h1,
-h2,
-h3 {
-  color: #212121 !important;
+  padding: 0;
+  margin: 0;
+  background: #fff8e1;
 }
 
 .hand {

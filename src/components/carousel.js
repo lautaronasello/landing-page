@@ -13,7 +13,7 @@ export default function Pagination() {
           src={help}
           alt="Help you"
           style={{
-            width: "26rem",
+            width: "22.5rem",
             height: "30rem",
             border: "1px solid #212121",
             borderRadius: "10px",
@@ -28,7 +28,7 @@ export default function Pagination() {
           </h3>{" "}
           <p
             className="text-light text-break d-inline-block px-1 m-1"
-            style={{ backgroundColor: "black" }}
+            style={{ backgroundColor: "black", width: "75%" }}
           >
             Como decia Hannah Montana, "𝚕𝚊 𝚟𝚒𝚍𝚊 𝚎𝚜 𝚌𝚞𝚎𝚜𝚝𝚊
           </p>
@@ -47,7 +47,7 @@ export default function Pagination() {
           alt="contact"
           style={{
             height: "30rem",
-            width: "26rem",
+            width: "22.5rem",
             border: "1px solid #212121",
             borderRadius: "10px",
           }}
@@ -61,7 +61,7 @@ export default function Pagination() {
           </h3>{" "}
           <p
             className="text-light text-break d-inline-block px-1 m-1"
-            style={{ backgroundColor: "black" }}
+            style={{ backgroundColor: "black", width: "75%" }}
           >
             Como decia Hannah Montana, "𝚕𝚊 𝚟𝚒𝚍𝚊 𝚎𝚜 𝚌𝚞𝚎𝚜𝚝𝚊
           </p>
@@ -79,7 +79,7 @@ export default function Pagination() {
           src={gangas}
           alt="Help you"
           style={{
-            width: "26rem",
+            width: "22.5rem",
             height: "30rem",
             border: "1px solid #212121",
             borderRadius: "10px",
@@ -94,7 +94,7 @@ export default function Pagination() {
           </h3>{" "}
           <p
             className="text-light text-break d-inline-block px-1 m-1"
-            style={{ backgroundColor: "black" }}
+            style={{ backgroundColor: "black", width: "75%" }}
           >
             Como decia Hannah Montana, "𝚕𝚊 𝚟𝚒𝚍𝚊 𝚎𝚜 𝚌𝚞𝚎𝚜𝚝𝚊
           </p>

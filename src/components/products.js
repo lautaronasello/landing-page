@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Button } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 
 export default function Products(props) {
   return (
@@ -8,7 +8,6 @@ export default function Products(props) {
       <Card.Body className="">
         <Card.Title>{props.title}</Card.Title>
         <Card.Text>{props.text}</Card.Text>
-        <Button variant="outline-secondary">{props.btn}</Button>
       </Card.Body>
     </Card>
   );

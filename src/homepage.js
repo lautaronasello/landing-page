@@ -11,29 +11,31 @@ export default function HomePage() {
   return (
     <Fragment>
       <Navigate />
-      <Container className="text-center mt-3 pt-4 back align-items-center">
+      <Container className="text-center mt-3 pt-4 back ">
         <Row>
           <Col>
-            <h1 id="inicio" className="display-1 my-3">
+            <h1 id="inicio" className="display-4 mt-4 mb-3">
               Bienvenido!
             </h1>
           </Col>
         </Row>
-        <Row className="justify-content-center">
+        <Row className="">
+          <Col md={3}></Col>
           <Col
-            md={8}
-            className="text-center p-5 shadow"
+            md={6}
+            className="text-center p-3 shadow"
             style={{ background: "#ecd3c0" }}
           >
-            <h1>MenosCAoSxFAVOR</h1>
+            <h3>MenosCAoSxFAVOR</h3>
             <p className="label">
               Enemigas de la procastinacion y del descontrol nos encontramos en
               Cordoba pero{" "}
               <strong>
-                hacemos envios a <mark>TODO EL PAIS</mark>
+                hacemos envios a <br /> <mark>TODO EL PAIS</mark>
               </strong>
             </p>
           </Col>
+          <Col md={3}></Col>
         </Row>
         <Row className="text-center justify-content-center my-5">
           <Col md={8}>
@@ -68,13 +70,11 @@ export default function HomePage() {
         />
       </Container>
       <div
-        className="text-center p-4 align-items-center"
+        className="text-center p-4"
         id="inicio"
         style={{ background: "#ecd3c0" }}
       >
-        <Container>
-          <Store />
-        </Container>
+        <Store />
       </div>
       <Contact />
     </Fragment>
