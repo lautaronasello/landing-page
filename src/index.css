@@ -50,3 +50,39 @@ html {
   text-decoration: none;
   color: rgba(0, 0, 0, 1);
 }
+
+@media (max-width: 550px) {
+  .img-style {
+    width: 18rem !important;
+  }
+}
+
+.card-title {
+  color: #212112 !important;
+  text-decoration: none !important;
+}
+
+.card-title:hover {
+  text-decoration: none;
+}
+
+.card-text {
+  color: #212112 !important;
+  text-decoration: none !important;
+}
+
+.card-text:hover {
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+a:hover {
+  text-decoration: none !important;
+}
+
+h4 {
+  color: #212121 !important;
+}

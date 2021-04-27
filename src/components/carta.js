@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 
-export default function Products(props) {
+export default function Carta(props) {
   return (
     <Card className="text-center mb-3 shadow" style={{ height: "35rem" }}>
       <Card.Img className="mt-5" variant="top" src={props.img} />

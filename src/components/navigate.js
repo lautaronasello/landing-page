@@ -1,14 +1,11 @@
 import { React } from "react";
 import { Navbar, Nav } from "react-bootstrap";
-import { Link, animateScroll as scroll } from "react-scroll";
+import { Link } from "react-scroll";
 
 export default function Navigate() {
-  function scrollToTop() {
-    scroll.scrollToTop();
-  }
   return (
     <Navbar expand="lg" className="bg-nav shadow bg-gradient fixed-top">
-      <Navbar.Brand onClick={scrollToTop} className="mx-3 hand">
+      <Navbar.Brand href="/" className="mx-3 hand">
         MenosCAoSxFAVOR
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />

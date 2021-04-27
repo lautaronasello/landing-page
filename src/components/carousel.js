@@ -9,11 +9,11 @@ export default function Pagination() {
     <Carousel className="carousel-dark carousel-fade">
       <Carousel.Item className="text-center m-0">
         <img
-          className="shadow"
+          className="shadow img-style"
           src={help}
           alt="Help you"
           style={{
-            width: "22.5rem",
+            width: "25rem",
             height: "30rem",
             border: "1px solid #212121",
             borderRadius: "10px",
@@ -46,8 +46,8 @@ export default function Pagination() {
           src={contact}
           alt="contact"
           style={{
+            width: "25rem",
             height: "30rem",
-            width: "22.5rem",
             border: "1px solid #212121",
             borderRadius: "10px",
           }}
@@ -75,11 +75,11 @@ export default function Pagination() {
       </Carousel.Item>
       <Carousel.Item className="text-center m-0">
         <img
-          className="shadow"
+          className="shadow img-style"
           src={gangas}
           alt="Help you"
           style={{
-            width: "22.5rem",
+            width: "25rem",
             height: "30rem",
             border: "1px solid #212121",
             borderRadius: "10px",

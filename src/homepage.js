@@ -1,11 +1,12 @@
 import { Fragment, React } from "react";
-import Navigate from "./components/navbar";
 import { Container, Row, Col } from "react-bootstrap";
 import "./homepage.css";
 import Pagination from "./components/carousel";
 import Who from "./components/who";
-import Store from "./components/store";
+import Info from "./components/info";
 import Contact from "./components/contact";
+import Navigate from "./components/navigate";
+import Text from "./components/text";
 
 export default function HomePage() {
   return (
@@ -19,24 +20,15 @@ export default function HomePage() {
             </h1>
           </Col>
         </Row>
-        <Row className="">
-          <Col md={3}></Col>
-          <Col
-            md={6}
-            className="text-center p-3 shadow"
-            style={{ background: "#ecd3c0" }}
-          >
-            <h3>MenosCAoSxFAVOR</h3>
-            <p className="label">
-              Enemigas de la procastinacion y del descontrol nos encontramos en
-              Cordoba pero{" "}
-              <strong>
-                hacemos envios a <br /> <mark>TODO EL PAIS</mark>
-              </strong>
-            </p>
-          </Col>
-          <Col md={3}></Col>
-        </Row>
+        <Text
+          title="MenosCAoSxFAVOR"
+          secondaryText={[
+            "Enemigas de la procastinacion y del descontrol nos encontramos en Cordoba pero",
+            <strong>, hacemos envios a </strong>,
+            <br />,
+            <mark>TODO EL PAIS</mark>,
+          ]}
+        />
         <Row className="text-center justify-content-center my-5">
           <Col md={8}>
             <Pagination />
@@ -74,7 +66,7 @@ export default function HomePage() {
         id="inicio"
         style={{ background: "#ecd3c0" }}
       >
-        <Store />
+        <Info />
       </div>
       <Contact />
     </Fragment>
