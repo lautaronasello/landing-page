@@ -26,7 +26,7 @@ export default function Contact() {
   return (
     <Container id="contact">
       <Row>
-        <Col className="text-center mt-5">
+        <Col className="text-center">
           <h1 className="display-4">Contacto</h1>
           <p className="lead">
             Cualquier duda o consulta podes mandarnos un mail o hablarnos por
