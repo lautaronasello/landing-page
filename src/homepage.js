@@ -143,7 +143,6 @@ export default function HomePage() {
         <Row>
           <Contact
             template="template_learn"
-            asunto="Quiero Aprender"
             btnValue="Quiero enterarme!"
             classHidden="visually-hidden"
           />
@@ -180,11 +179,7 @@ export default function HomePage() {
         </Row>
         <Row className="pb-5 mb-5">
           <Col lg={6} sm={6} className="mb-3">
-            <Contact
-              template="template_mayoristas"
-              asunto="COMPRA MAYORISTA"
-              btnValue="Enviar!"
-            />
+            <Contact template="template_mayoristas" btnValue="Enviar!" />
           </Col>
           <Col lg={6} sm={6} className="mb-3">
             <Img

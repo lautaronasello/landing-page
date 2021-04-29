@@ -1,7 +1,10 @@
-* {
+h4 {
   font-family: "Courier New", Courier, monospace;
 }
 
+h3 {
+  font-family: "Courier New", Courier, monospace;
+}
 #root {
   padding: 0%;
   margin: 0%;
@@ -108,21 +111,22 @@ p {
 }
 
 .insta-link {
+  color: #212121 !important;
+}
+
+/* rgb(124, 146, 124, 1) */
+
+.insta-link:hover {
   color: #ecd3c0 !important;
 }
 
-.insta-link:hover {
-  color: rgb(124, 146, 124, 0.5) !important;
-}
-
 .btn-outline-secondary {
-  color: #fbebe9 !important;
-  border-color: #fbebe9 !important;
-  background-color: #c9d6c9 !important;
+  color: #a49592 !important;
+  border-color: #a49592 !important;
 }
 
 .btn-outline-secondary:hover {
   color: #c9d6c9 !important;
-  background-color: #fbebe9 !important;
+  background-color: #a49592 !important;
   border-color: #c9d6c9 !important;
 }
