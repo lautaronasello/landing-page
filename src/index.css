@@ -1,5 +1,11 @@
+* {
+  font-family: "Courier New", Courier, monospace;
+}
+
 #root {
-  background: #fff8e1;
+  padding: 0%;
+  margin: 0%;
+  background: #f6edb6;
 }
 
 body {
@@ -15,10 +21,6 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-}
-
-.bg-nav {
-  background-color: #fbe9e7;
 }
 
 html {
@@ -39,21 +41,24 @@ html {
 }
 
 .nav-link > .active {
-  border-bottom: 3px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 3px solid #a49592;
 }
 
 .active {
-  color: rgba(0, 0, 0, 0.5);
+  color: #a49592;
 }
 
 .active:hover {
   text-decoration: none;
-  color: rgba(0, 0, 0, 1);
+  color: #a49592;
 }
 
 @media (max-width: 550px) {
   .img-style {
     width: 18rem !important;
+  }
+  .font-size {
+    font-size: 1rem !important;
   }
 }
 
@@ -67,7 +72,6 @@ html {
 }
 
 .card-text {
-  color: #212112 !important;
   text-decoration: none !important;
 }
 
@@ -85,4 +89,40 @@ a:hover {
 
 h4 {
   color: #212121 !important;
+}
+
+p {
+  color: #a49592;
+}
+
+.yellow {
+  background-color: #f6edb6;
+}
+
+.brown {
+  background-color: #a49592;
+}
+
+.green {
+  background-color: #c9d6c9;
+}
+
+.insta-link {
+  color: #ecd3c0 !important;
+}
+
+.insta-link:hover {
+  color: rgb(124, 146, 124, 0.5) !important;
+}
+
+.btn-outline-secondary {
+  color: #fbebe9 !important;
+  border-color: #fbebe9 !important;
+  background-color: #c9d6c9 !important;
+}
+
+.btn-outline-secondary:hover {
+  color: #c9d6c9 !important;
+  background-color: #fbebe9 !important;
+  border-color: #c9d6c9 !important;
 }

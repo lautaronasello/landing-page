@@ -2,14 +2,16 @@ import React from "react";
 import { Container, Row, Col, Form } from "react-bootstrap";
 import emailjs from "emailjs-com";
 
-export default function Contact() {
+export default function Contact(props) {
+  const { template, asunto, btnValue, classHidden } = props;
+
   function sendEmail(e) {
     e.preventDefault();
 
     emailjs
       .sendForm(
         "service_gmail",
-        "template_menoscaos",
+        template,
         e.target,
         "user_AWfTGKV1KutMrQp821o8P"
       )
@@ -26,17 +28,8 @@ export default function Contact() {
   return (
     <Container id="contact">
       <Row>
-        <Col className="text-center">
-          <h1 className="display-4">Contacto</h1>
-          <p className="lead">
-            Cualquier duda o consulta podes mandarnos un mail o hablarnos por
-            nuestras redes sociales!
-          </p>
-        </Col>
-      </Row>
-      <Row>
         <Col>
-          <Form onSubmit={sendEmail} className="py-5">
+          <Form onSubmit={sendEmail} className="pb-3 ">
             <Form.Group controlId="exampleForm.ControlInput1">
               <Form.Label>Nombre </Form.Label>
               <Form.Control
@@ -52,15 +45,30 @@ export default function Contact() {
                 placeholder="nombre@ejemplo.com"
                 className="mb-2"
               />
-              <Form.Label>Asunto </Form.Label>
-              <Form.Control
-                name="asunto"
-                type="text"
-                placeholder="Promos de esta semana"
-                className="mb-2"
-              />
+              <div className={classHidden}>
+                <Form.Label>Telefono </Form.Label>
+                <Form.Control
+                  name="phone"
+                  type="tel"
+                  placeholder="(Codigo de área) Numero"
+                  className="mb-2"
+                />
+              </div>
+
+              <div className="visually-hidden-focusable">
+                <Form.Label>Asunto </Form.Label>
+                <Form.Control
+                  name="subject"
+                  type="text"
+                  defaultValue={asunto}
+                  className="mb-2 "
+                />
+              </div>
             </Form.Group>
-            <Form.Group controlId="exampleForm.ControlTextarea1">
+            <Form.Group
+              controlId="exampleForm.ControlTextarea1"
+              className={classHidden}
+            >
               <Form.Label>Mensaje</Form.Label>
               <Form.Control as="textarea" name="message" rows={3} />
             </Form.Group>
@@ -68,9 +76,9 @@ export default function Contact() {
               <input
                 className="btn btn-outline-secondary me-md-2"
                 type="submit"
-                value="Enviar!"
+                value={btnValue}
               />
-            </div>{" "}
+            </div>
           </Form>
         </Col>
       </Row>

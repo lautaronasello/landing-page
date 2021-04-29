@@ -2,18 +2,17 @@ import React from "react";
 import { Row, Col } from "react-bootstrap";
 
 export default function Text(props) {
+  const { titleText, secondaryText } = props;
   return (
-    <Row>
-      <Col md={3}></Col>
+    <Row className="justify-content-center align-items-center">
       <Col
-        md={6}
+        md={12}
         className="text-center p-3 shadow"
-        style={{ background: "#ecd3c0" }}
+        style={{ background: "#fff" }}
       >
-        <h3>{props.title} </h3>
-        <p className="label">{props.secondaryText}</p>
+        <h4>{titleText} </h4>
+        <p className="label">{secondaryText}</p>
       </Col>
-      <Col md={3}></Col>
     </Row>
   );
 }

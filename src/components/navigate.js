@@ -4,13 +4,17 @@ import { Link } from "react-scroll";
 
 export default function Navigate() {
   return (
-    <Navbar expand="lg" className="bg-nav shadow bg-gradient fixed-top">
-      <Navbar.Brand href="/" className="mx-3 hand">
-        MenosCAoSxFAVOR
+    <Navbar
+      expand="lg"
+      className="bg-nav shadow bg-gradient fixed-top"
+      style={{ background: "#ecd3c0" }}
+    >
+      <Navbar.Brand href="/" className="ml-2 hand pt-3 my-0">
+        <h4 className="font-size">menos caos por favor</h4>{" "}
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
+        <Nav className="mr-auto ml-4">
           <Nav.Link>
             <Link
               activeClass="active"
@@ -38,25 +42,37 @@ export default function Navigate() {
           <Nav.Link>
             <Link
               activeClass="active"
-              to="store"
+              to="buy"
               spy={true}
               smooth={true}
               offset={-70}
               duration={1200}
             >
-              PRODUCTOS
+              QUIERO COMPRAR
             </Link>
           </Nav.Link>
           <Nav.Link>
             <Link
               activeClass="active"
-              to="contact"
+              to="learn"
               spy={true}
               smooth={true}
               offset={-70}
               duration={1200}
             >
-              CONTACTO
+              QUIERO APRENDER
+            </Link>
+          </Nav.Link>
+          <Nav.Link>
+            <Link
+              activeClass="active"
+              to="wholesalers"
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={1200}
+            >
+              MAYORISTAS
             </Link>
           </Nav.Link>
         </Nav>

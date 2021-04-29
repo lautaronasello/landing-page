@@ -15,3 +15,10 @@ Queremos compartir con vos los productos que nos ayudan día a día a poder hace
 #F6EDB6 amarillo para el fondo
 #A49592 marroncito para letras o cosas así 
 #C9D6C9 verdecito para acentos
+#ecd3c0 rosita nav y text
+#fbebe9 marcos rosita mas claro
+
+*Quienes somos sin fondo y letras negras
+todas las otras p marroncitas
+lso otros fondo blanco
+<a> verdecito cambiar oscuridad
