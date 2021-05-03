@@ -10,7 +10,7 @@ export default function Landing() {
     >
       <Row>
         <Col sm={12} md={12} lg={12} xl={12} className="px-4">
-          <h1 className="display-4">MenosCAoS X FAVOR</h1>
+          <h1>menos caos por favor</h1>
           <p className="lead mt-5">
             Somos Agus 🦸🏽‍♀ y Mulan 🦹🏻‍♀️ 📚 Organización bajada a tierra 🌏 <br />
             📍 Córdoba Capital

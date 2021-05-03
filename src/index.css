@@ -1,8 +1,6 @@
+h1,
+h3,
 h4 {
-  font-family: "Courier New", Courier, monospace;
-}
-
-h3 {
   font-family: "Courier New", Courier, monospace;
 }
 #root {
@@ -35,6 +33,12 @@ html {
 
 .hand {
   cursor: pointer;
+  color: #766b62;
+}
+
+.hand:hover {
+  cursor: pointer;
+  color: #212121;
 }
 
 .card-img-top {

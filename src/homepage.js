@@ -22,7 +22,7 @@ export default function HomePage() {
   return (
     <Fragment>
       <Navigate />
-      <Container className="text-center mt-3 pt-4 back ">
+      <Container className="text-center mt-5 pt-4 back ">
         <Row>
           <Col>
             <h3 id="inicio" className="my-5">
@@ -82,36 +82,16 @@ export default function HomePage() {
 
         <Row>
           <Col lg={3} sm={3}>
-            <Img
-              img={product}
-              alt="productos"
-              height={"15rem"}
-              width={"100%"}
-            />{" "}
+            <Img img={product} alt="productos" />{" "}
           </Col>
           <Col lg={3} sm={3}>
-            <Img
-              img={product1}
-              alt="productos"
-              height={"15rem"}
-              width={"100%"}
-            />
+            <Img img={product1} alt="productos" />
           </Col>
           <Col lg={3} sm={3}>
-            <Img
-              img={product2}
-              alt="productos"
-              height={"15rem"}
-              width={"100%"}
-            />
+            <Img img={product2} alt="productos" />
           </Col>
           <Col lg={3} sm={3}>
-            <Img
-              img={product3}
-              alt="productos"
-              height={"15rem"}
-              width={"100%"}
-            />
+            <Img img={product3} alt="productos" />
           </Col>
         </Row>
         <Row>
@@ -140,22 +120,23 @@ export default function HomePage() {
             />
           </Col>
         </Row>
-        <Row>
+        <div className="mt-3">
           <Contact
             template="template_learn"
             btnValue="Quiero enterarme!"
             classHidden="visually-hidden"
           />
-        </Row>
+        </div>
+
         <Row>
           <Col lg={4} sm={4}>
-            <Img img={cosas1} alt="productos" height={"15rem"} width={"100%"} />{" "}
+            <Img img={cosas1} alt="productos" />{" "}
           </Col>
           <Col lg={4} sm={4}>
-            <Img img={cosas2} alt="productos" height={"15rem"} width={"100%"} />
+            <Img img={cosas2} alt="productos" />
           </Col>
           <Col lg={4} sm={4}>
-            <Img img={cosas3} alt="productos" height={"15rem"} width={"100%"} />
+            <Img img={cosas3} alt="productos" />
           </Col>
         </Row>
         <Row>
@@ -177,17 +158,12 @@ export default function HomePage() {
             />
           </Col>
         </Row>
-        <Row className="pb-5 mb-5">
-          <Col lg={6} sm={6} className="mb-3">
+        <Row className="pb-3 mb-3">
+          <Col lg={6} sm={6} className="mt-5 pt-4">
             <Contact template="template_mayoristas" btnValue="Enviar!" />
           </Col>
           <Col lg={6} sm={6} className="mb-3">
-            <Img
-              img={apilado}
-              alt="productos"
-              height={"24rem"}
-              width={"100%"}
-            />
+            <Img img={apilado} alt="productos" />
           </Col>
         </Row>
         <Footer />

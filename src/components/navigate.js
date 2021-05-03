@@ -15,66 +15,71 @@ export default function Navigate() {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto ml-4">
-          <Nav.Link>
+          <div className="nav-link">
             <Link
+              className="hand"
               activeClass="active"
               to="inicio"
               spy={true}
               smooth={true}
               offset={-70}
-              duration={1200}
+              duration={1000}
             >
               INICIO
             </Link>
-          </Nav.Link>
-          <Nav.Link>
+          </div>
+          <div className="nav-link">
             <Link
+              className="hand"
               activeClass="active"
               to="who"
               spy={true}
               smooth={true}
               offset={-70}
-              duration={1200}
+              duration={1000}
             >
               QUIENES SOMOS
             </Link>
-          </Nav.Link>
-          <Nav.Link>
+          </div>
+          <div className="nav-link">
             <Link
+              className="hand"
               activeClass="active"
               to="buy"
               spy={true}
               smooth={true}
               offset={-70}
-              duration={1200}
+              duration={1000}
             >
               QUIERO COMPRAR
             </Link>
-          </Nav.Link>
-          <Nav.Link>
+          </div>
+          <div className="nav-link">
             <Link
+              className="hand"
               activeClass="active"
               to="learn"
               spy={true}
               smooth={true}
               offset={-70}
-              duration={1200}
+              duration={1000}
             >
               QUIERO APRENDER
             </Link>
-          </Nav.Link>
-          <Nav.Link>
+          </div>
+          <div className="nav-link">
             <Link
+              className="hand"
               activeClass="active"
               to="wholesalers"
               spy={true}
               smooth={true}
               offset={-70}
-              duration={1200}
+              duration={1000}
             >
               MAYORISTAS
             </Link>
-          </Nav.Link>
+          </div>
         </Nav>
         <a
           href="https://www.instagram.com/menoscaosporfavor/"
