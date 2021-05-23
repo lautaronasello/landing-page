@@ -11,6 +11,9 @@ export default function InfoCard({
   const style = {
     backgroundColor: backgroundColor,
     boxShadow: boxShadow,
+  };
+
+  const letra = {
     color: color,
   };
 
@@ -18,7 +21,9 @@ export default function InfoCard({
     <Row className='justify-content-center'>
       <Col className='rounded p-3 mb-2' md={12} style={style}>
         <h3>{title}</h3>
-        <p className='lead'>{subtitle}</p>
+        <p className='lead' style={letra}>
+          {subtitle}
+        </p>
       </Col>
     </Row>
   );

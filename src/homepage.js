@@ -12,24 +12,45 @@ import cosas1 from './components/products-img/prod-cosas.jpeg';
 import cosas2 from './components/products-img/prod-cosas-2.jpeg';
 import cosas3 from './components/products-img/prod-cosas-3.jpeg';
 import apilado from './components/products-img/prod-apilados.jpeg';
-import CardSell from './components/CardSell';
+import SectionCombo from './components/SectionCombo';
 import axios from 'axios';
+import SectionProducts from './components/SectionProducts';
 
 export default function HomePage() {
   const [combo, setCombo] = useState([]);
+  const [products, setProducts] = useState([]);
+
   useEffect(() => {
     let cancel;
-    const toArray = [];
-    axios
-      .get('http://localhost:1337/combos', {
+    const toComboArray = [];
+    const getCombos = async () => {
+      const res = await axios.get('http://localhost:1337/combos', {
         cancelToken: new axios.CancelToken((c) => (cancel = c)),
-      })
-      .then((res) => {
-        toArray.push(res.data);
-        setCombo(toArray);
       });
+      toComboArray.push(res.data);
+      setCombo(toComboArray);
+    };
+    getCombos();
+
     return () => cancel;
-  });
+  }, []);
+
+  useEffect(() => {
+    let canceled;
+    const toProductsArray = [];
+    const getCombos = async () => {
+      const res = await axios.get('http://localhost:1337/products', {
+        canceledToken: new axios.CancelToken((c) => (canceled = c)),
+      });
+      toProductsArray.push(res.data);
+      setProducts(toProductsArray);
+    };
+    getCombos();
+
+    return () => canceled;
+  }, []);
+
+  console.log(combo);
 
   return (
     <Fragment>
@@ -79,94 +100,24 @@ export default function HomePage() {
               subtitle='Tenes distintos combos para aprovechar el orden para ver si lo tenemos en stock! Coordinamos el envío o el retiro de los productos!'
             />
           </Col>
+          <SectionCombo combo={combo} />
         </Row>
-        <section className='carousel'>
-          <div className='carousel__container'>
-            <Row className='mt-5'>
-              {combo.map((data) => {
-                return (
-                  <>
-                    <Col lg={3} sm={3}>
-                      <CardSell
-                        key1={data[0].id}
-                        nameCombo={data[0].name}
-                        key2={data[0].products[0].published_at}
-                        prods={[
-                          <li key={data[0].products[0].name}>
-                            {data[0].products[0].name}{' '}
-                          </li>,
-                          <li key={data[0].products[1].name}>
-                            {data[0].products[1].name}{' '}
-                          </li>,
-                        ]}
-                        key4={data[0].created_at}
-                        price={data[0].price}
-                      />
-                    </Col>
-                    <Col lg={3} sm={3}>
-                      <CardSell
-                        key1={data[1].id}
-                        nameCombo={data[1].name}
-                        key2={data[1].products[0].published_at}
-                        prods={[
-                          <li key={data[1].products[0].name}>
-                            {data[1].products[0].name}{' '}
-                          </li>,
-                          <li key={data[1].products[1].name}>
-                            {data[1].products[1].name}{' '}
-                          </li>,
-                          <li key={data[1].products[2].name}>
-                            {data[1].products[2].name}{' '}
-                          </li>,
-                        ]}
-                        key4={data[1].created_at}
-                        price={data[1].price}
-                      />
-                    </Col>{' '}
-                    <Col lg={3} sm={3}>
-                      <CardSell
-                        key1={data[2].id}
-                        nameCombo={data[2].name}
-                        key2={data[2].products[0].published_at}
-                        prods={[
-                          <li key={data[2].products[0].name}>
-                            {data[2].products[0].name}{' '}
-                          </li>,
-                          <li key={data[2].products[1].name}>
-                            {data[2].products[1].name}{' '}
-                          </li>,
-                          <li key={data[2].products[2].name}>
-                            {data[2].products[2].name}{' '}
-                          </li>,
-                        ]}
-                        key4={data[2].created_at}
-                        price={data[2].price}
-                      />
-                    </Col>{' '}
-                    <Col lg={3} sm={3}>
-                      <CardSell
-                        key1={data[3].id}
-                        nameCombo={data[3].name}
-                        key2={data[3].products[0].published_at}
-                        prods={[
-                          <li key={data[3].products[0].name}>
-                            {data[3].products[0].name}{' '}
-                          </li>,
-                          <li key={data[3].products[1].name}>
-                            {data[3].products[1].name}{' '}
-                          </li>,
-                        ]}
-                        key4={data[3].created_at}
-                        price={data[3].price}
-                      />
-                    </Col>
-                  </>
-                );
-              })}
-            </Row>
-          </div>
-        </section>
-
+        <Row>
+          <Col md={12} className=' my-5'>
+            <hr className='m-auto' style={{ color: '#212121' }} id='who' />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <InfoCard
+              title='Productos'
+              backgroundColor={'#fff'}
+              boxShadow={'0rem 0.5rem 1rem rgba(0, 0, 0, 0.15)'}
+              subtitle='Productos productos productos productos etc etc etc'
+            />
+          </Col>
+          <SectionProducts products={products} />
+        </Row>
         <Row>
           <Col md={12} className='my-5'>
             <hr className='mx-auto' style={{ color: '#212121' }} id='learn' />
