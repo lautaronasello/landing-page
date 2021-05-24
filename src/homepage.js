@@ -2,7 +2,6 @@ import { Fragment, React, useEffect, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import InfoCard from './components/info-card';
 import Contact from './components/contact';
-import Navigate from './components/navigate';
 import Text from './components/text';
 import Img from './components/img';
 import Footer from './components/footer';
@@ -17,33 +16,33 @@ import axios from 'axios';
 import SectionProducts from './components/SectionProducts';
 
 export default function HomePage() {
+  const style = {
+    backgroundColor: '#fff',
+    boxShadow: '0rem 0.5rem 1rem rgba(0, 0, 0, 0.15)',
+  };
+
   const [combo, setCombo] = useState([]);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     let cancel;
-    const toComboArray = [];
     const getCombos = async () => {
-      const res = await axios.get('http://localhost:1337/combos', {
+      const res = await axios.get('http://localhost:1337/combos/', {
         cancelToken: new axios.CancelToken((c) => (cancel = c)),
       });
-      toComboArray.push(res.data);
-      setCombo(toComboArray);
+      setCombo(res.data);
     };
     getCombos();
-
     return () => cancel;
   }, []);
 
   useEffect(() => {
     let canceled;
-    const toProductsArray = [];
     const getCombos = async () => {
       const res = await axios.get('http://localhost:1337/products', {
         canceledToken: new axios.CancelToken((c) => (canceled = c)),
       });
-      toProductsArray.push(res.data);
-      setProducts(toProductsArray);
+      setProducts(res.data);
     };
     getCombos();
 
@@ -54,7 +53,6 @@ export default function HomePage() {
 
   return (
     <Fragment>
-      <Navigate />
       <Container className='text-center mt-5 pt-4 back '>
         <Row>
           <Col>
@@ -77,13 +75,28 @@ export default function HomePage() {
         </Row>
       </Container>
       <Container className='text-center justify-content-center'>
-        <InfoCard
-          color='black'
-          title='Quienes Somos?'
-          subtitle='Somos Agus 🦸🏽‍♀ y Mulan 🦹🏻‍♀, enemigas de la desorganización y emprendedoras de nacimiento; juntas formamos el equipo que lleva adelante el emprendimiento. 
-          Menos Caos nació frente a la necesidad de compartir nuestro amor por la organización, la productividad y planificación 🤓. Nuestra misión es ayudarte a ordenar el caos de la vida cotidiana, y especialmente, acompañarte en esos momentos de desgano o desorganización total (fechas especiales, nuevos comienzos, etc.) 🤩. Si sos del team de los organizados y productivos, -Caosxfavor viene a traerte los productos de tus sueños. Todas esas cosas super ñoñas que siempre quisiste y que te van a volver loco/a. Yyyy, si sos del equipo de los desordenados y caóticos, vinimos a ayudarte a luchar contra la desorganización 💪🏼👊🏼.
-          Queremos compartir con vos los productos que nos ayudan día a día a poder hacer más y mejor! Seguinos en nuestras redes sociales, compartimos todos los días tips, estrategias y experiencias nuestras aprendiendo cada día a optimizarnos! '
-        />
+        <div className='p-3'>
+          <h3>Quienes Somos?</h3>
+          <p className='lead' style={{ color: 'black' }}>
+            Somos Agus 🦸🏽‍♀ y Mulan 🦹🏻‍♀, enemigas de la desorganización y
+            emprendedoras de nacimiento; juntas formamos el equipo que lleva
+            adelante el emprendimiento. Menos Caos nació frente a la necesidad
+            de compartir nuestro amor por la organización, la productividad y
+            planificación 🤓. Nuestra misión es ayudarte a ordenar el caos de la
+            vida cotidiana, y especialmente, acompañarte en esos momentos de
+            desgano o desorganización total (fechas especiales, nuevos
+            comienzos, etc.) 🤩. Si sos del team de los organizados y
+            productivos, -Caosxfavor viene a traerte los productos de tus
+            sueños. Todas esas cosas super ñoñas que siempre quisiste y que te
+            van a volver loco/a. Yyyy, si sos del equipo de los desordenados y
+            caóticos, vinimos a ayudarte a luchar contra la desorganización
+            💪🏼👊🏼. Queremos compartir con vos los productos que nos ayudan día a
+            día a poder hacer más y mejor! Seguinos en nuestras redes sociales,
+            compartimos todos los días tips, estrategias y experiencias nuestras
+            aprendiendo cada día a optimizarnos!
+          </p>
+        </div>
+
         <Row>
           <Col md={12} className='mb-5'>
             <hr className='mx-auto' style={{ color: '#212121' }} id='buy' />
@@ -95,8 +108,7 @@ export default function HomePage() {
           <Col>
             <InfoCard
               title='Combos!'
-              backgroundColor={'#fff'}
-              boxShadow={'0rem 0.5rem 1rem rgba(0, 0, 0, 0.15)'}
+              style={style}
               subtitle='Tenes distintos combos para aprovechar el orden para ver si lo tenemos en stock! Coordinamos el envío o el retiro de los productos!'
             />
           </Col>
@@ -111,8 +123,7 @@ export default function HomePage() {
           <Col>
             <InfoCard
               title='Productos'
-              backgroundColor={'#fff'}
-              boxShadow={'0rem 0.5rem 1rem rgba(0, 0, 0, 0.15)'}
+              style={style}
               subtitle='Productos productos productos productos etc etc etc'
             />
           </Col>
@@ -127,11 +138,11 @@ export default function HomePage() {
           <Col>
             <InfoCard
               title='Quiero aprender'
-              backgroundColor={'#fff '}
-              boxShadow={'0rem 0.5rem 1rem rgba(0, 0, 0, 0.15)'}
+              style={style}
               subtitle={[
                 'Menoscaos es más que productos para estudiantes, somos una comunidad! Dejanos tu mail para que te mandemos regalitos con información extra, herramientas y estrategias que solemos hacer! No te olvides de seguirnos en ',
                 <a
+                  key='1'
                   href='https://www.instagram.com/menoscaosporfavor/'
                   target='_blank'
                   rel='noopener noreferrer'
@@ -176,8 +187,7 @@ export default function HomePage() {
           <Col>
             <InfoCard
               title='Mayoristas'
-              backgroundColor={'#fff '}
-              boxShadow={'0rem 0.5rem 1rem rgba(0, 0, 0, 0.15)'}
+              style={style}
               subtitle='Querés vender Menoscaos en tu negocio? Genial! Dejanos tu mail y nos vamos a contactar mandándote el catálogo con descuentos exclusivos! El mínimo de compra son 20 productos.'
             />
           </Col>

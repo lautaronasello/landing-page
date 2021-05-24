@@ -1,35 +1,19 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Img from './img';
 import imgtest from './products-img/prod-apilados.jpeg';
 
-export default function CardSell({
-  nameCombo,
-  prods,
-  price,
-  key0,
-  key1,
-  style,
-  key3,
-  key4,
-}) {
+export default function CardSell({ nameCombo, prods, price, style, link }) {
   return (
-    <div
-      key={key0}
-      className='mx-4 carousel-item1 card text-break'
-      style={style}
-    >
-      <Img img={imgtest} alt='altraro' />
+    <div className='my-4 me-4 ms-1 carousel-item1 card ' style={style}>
+      <Img img={imgtest} alt='alt raro' />
       <div className='card-body'>
-        <div className='text-break'>
-          <h5 className='card-title text-center' key={key1}>
-            {nameCombo}
-          </h5>
-        </div>
-        <ul key={key3}>{prods}</ul>
+        <h5 className='card-title'>{nameCombo}</h5>
+        <p className='card-text'>{prods}</p>
         <div className='d-grip gap-2 d-md-flex justify-content-md-end'>
-          <button type='button' className='btn btn-primary btn-sm' key={key4}>
+          <Link className='btn btn-primary btn-sm' to={link}>
             AR${price}{' '}
-          </button>
+          </Link>
         </div>
       </div>
     </div>
