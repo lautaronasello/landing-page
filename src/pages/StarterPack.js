@@ -1,9 +1,11 @@
 import React from 'react';
-import imgtest from './components/products-img/productos.jpeg';
+import imgtest from '../components/products-img/productos.jpeg';
+import BackNav from '../components/back-nav.js';
 
 export default function StarterPack() {
   return (
     <>
+      <BackNav />
       <div
         className='container d-flex justify-content-center align-items-center'
         style={{ minHeight: '100vh' }}

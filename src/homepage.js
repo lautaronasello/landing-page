@@ -14,6 +14,7 @@ import apilado from './components/products-img/prod-apilados.jpeg';
 import SectionCombo from './components/SectionCombo';
 import axios from 'axios';
 import SectionProducts from './components/SectionProducts';
+import Navigate from './components/navigate';
 
 export default function HomePage() {
   const style = {
@@ -53,6 +54,7 @@ export default function HomePage() {
 
   return (
     <Fragment>
+      <Navigate />
       <Container className='text-center mt-5 pt-4 back '>
         <Row>
           <Col>
