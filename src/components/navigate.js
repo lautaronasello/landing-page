@@ -1,8 +1,41 @@
-import { React } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-scroll';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/storage';
+import LoginButton from './LoginButton';
+import { LogoutButton } from './LogoutButton';
 
 export default function Navigate() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user);
+      }
+    });
+  }, [user]);
+
+  const handleAuth = () => {
+    let provider = new firebase.auth.GoogleAuthProvider();
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then((result) => {})
+      .catch((error) => console.log(error.code));
+  };
+
+  const handleLogout = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then((result) => {
+        window.location.href = '/homepage';
+      })
+      .catch((error) => console.log(`Error ${error.code}: ${error.message}`));
+  };
   return (
     <Navbar
       expand='lg'
@@ -19,7 +52,7 @@ export default function Navigate() {
             <Link
               className='hand'
               activeClass='active'
-              to='#inicio'
+              to='inicio'
               spy={true}
               smooth={true}
               offset={-70}
@@ -81,6 +114,14 @@ export default function Navigate() {
             </Link>
           </div>
         </Nav>
+        <div className='nav-link'>
+          {user ? (
+            <LogoutButton user={user} handleLogout={handleLogout} />
+          ) : (
+            <LoginButton handleAuth={handleAuth} />
+          )}
+        </div>
+
         <a
           href='https://www.instagram.com/menoscaosporfavor/'
           target='_blank'

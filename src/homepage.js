@@ -5,9 +5,7 @@ import Contact from './components/contact';
 import Text from './components/text';
 import Img from './components/img';
 import Footer from './components/footer';
-
 import cosas1 from './components/products-img/prod-cosas.jpeg';
-
 import cosas2 from './components/products-img/prod-cosas-2.jpeg';
 import cosas3 from './components/products-img/prod-cosas-3.jpeg';
 import apilado from './components/products-img/prod-apilados.jpeg';
@@ -15,7 +13,7 @@ import SectionCombo from './components/SectionCombo';
 import axios from 'axios';
 import SectionProducts from './components/SectionProducts';
 import Navigate from './components/navigate';
-
+import 'firebase/firestore';
 export default function HomePage() {
   const style = {
     backgroundColor: '#fff',
@@ -24,7 +22,7 @@ export default function HomePage() {
 
   const [combo, setCombo] = useState([]);
   const [products, setProducts] = useState([]);
-
+  const [cart, setCart] = useState([]);
   useEffect(() => {
     let cancel;
     const getCombos = async () => {
@@ -50,7 +48,51 @@ export default function HomePage() {
     return () => canceled;
   }, []);
 
-  console.log(combo);
+  useEffect(() => {
+    db.collection('cart').onSnapshot((querySnapshot) => {
+      var p = [];
+      querySnapshot.forEach((doc) => {
+        p.push(doc.data());
+        products.map((i) => {
+          if (i.id == doc.data().id) {
+            i.cart = true;
+          }
+        });
+      });
+
+      setCart(p);
+    });
+  }, []);
+
+  function addtocart(item) {
+    products.map((i) => {
+      if (i.id == item.id) {
+        i.cart = true;
+      }
+    });
+
+    db.collection('cart').doc(`${item.id}`).set(item, { merge: true });
+  }
+
+  function removetocart(item) {
+    products.map((i) => {
+      if (i.id == item.id) {
+        i.cart = false;
+      }
+    });
+    db.collection('cart').doc(`${item.id}`).delete();
+  }
+
+  function increase(item) {
+    db.collection('cart')
+      .doc(`${item.id}`)
+      .update('quantity', fs.firestore.FieldValue.increment(1));
+  }
+  function decrease(item) {
+    db.collection('cart')
+      .doc(`${item.id}`)
+      .update('quantity', fs.firestore.FieldValue.increment(-1));
+  }
 
   return (
     <Fragment>
