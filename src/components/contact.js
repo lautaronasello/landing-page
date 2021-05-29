@@ -1,6 +1,6 @@
-import React from "react";
-import { Row, Col, Form } from "react-bootstrap";
-import emailjs from "emailjs-com";
+import React from 'react';
+import { Row, Col, Form } from 'react-bootstrap';
+import emailjs from 'emailjs-com';
 
 export default function Contact(props) {
   const { template, btnValue, classHidden } = props;
@@ -10,10 +10,10 @@ export default function Contact(props) {
 
     emailjs
       .sendForm(
-        "service_gmail",
+        'service_gmail',
         template,
         e.target,
-        "user_AWfTGKV1KutMrQp821o8P"
+        'user_AWfTGKV1KutMrQp821o8P'
       )
       .then(
         (result) => {
@@ -28,45 +28,45 @@ export default function Contact(props) {
   return (
     <Row>
       <Col>
-        <Form onSubmit={sendEmail} className="pb-3 ">
-          <Form.Group controlId="exampleForm.ControlInput1">
+        <Form onSubmit={sendEmail} className='pb-3 '>
+          <Form.Group controlId='exampleForm.ControlInput1'>
             <Form.Label>Nombre*</Form.Label>
             <Form.Control
-              name="name"
-              type="text"
-              placeholder="Tu Nombre :)"
-              className="mb-2"
+              name='name'
+              type='text'
+              placeholder='Tu Nombre :)'
+              className='mb-2'
               required
             />
             <Form.Label>Email*</Form.Label>
             <Form.Control
-              name="email"
-              type="email"
-              placeholder="nombre@ejemplo.com"
-              className="mb-2"
+              name='email'
+              type='email'
+              placeholder='nombre@ejemplo.com'
+              className='mb-2'
               required
             />
             <div className={classHidden}>
               <Form.Label>Teléfono </Form.Label>
               <Form.Control
-                name="phone"
-                type="tel"
-                placeholder="(Código de área) Número"
-                className="mb-2"
+                name='phone'
+                type='tel'
+                placeholder='(Código de área) Número'
+                className='mb-2'
               />
             </div>
           </Form.Group>
           <Form.Group
-            controlId="exampleForm.ControlTextarea1"
+            controlId='exampleForm.ControlTextarea1'
             className={classHidden}
           >
             <Form.Label>Mensaje</Form.Label>
-            <Form.Control as="textarea" name="message" rows={3} />
+            <Form.Control as='textarea' name='message' rows={3} />
           </Form.Group>
-          <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+          <div className='d-grid gap-2 d-md-flex justify-content-md-end'>
             <input
-              className="btn btn-outline-secondary me-md-2"
-              type="submit"
+              className='btn btn-primary me-md-2'
+              type='submit'
               value={btnValue}
             />
           </div>

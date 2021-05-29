@@ -1,7 +1,8 @@
 h1,
 h3,
-h4 {
-  font-family: "Courier New", Courier, monospace;
+h4,
+h5 {
+  font-family: 'Courier New', Courier, monospace;
 }
 #root {
   padding: 0%;
@@ -11,8 +12,8 @@ h4 {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -20,7 +21,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
@@ -28,7 +29,7 @@ html {
   scroll-behavior: smooth;
   padding: 0;
   margin: 0;
-  background: #fff8e1;
+  background: #f6edb6;
 }
 
 .hand {
@@ -69,23 +70,6 @@ html {
   }
 }
 
-.card-title {
-  color: #212112 !important;
-  text-decoration: none !important;
-}
-
-.card-title:hover {
-  text-decoration: none;
-}
-
-.card-text {
-  text-decoration: none !important;
-}
-
-.card-text:hover {
-  text-decoration: none;
-}
-
 a {
   text-decoration: none !important;
 }
@@ -124,13 +108,42 @@ p {
   color: #ecd3c0 !important;
 }
 
-.btn-outline-secondary {
-  color: #a49592 !important;
-  border-color: #a49592 !important;
+.btn-primary {
+  font-weight: bold !important;
+  color: #fff;
+  background-color: #ecd3c0 !important;
+  border-color: #ecd3c0 !important;
 }
 
-.btn-outline-secondary:hover {
-  color: #c9d6c9 !important;
-  background-color: #a49592 !important;
-  border-color: #c9d6c9 !important;
+.btn-primary:hover {
+  color: #fff;
+  background-color: #ecceb7 !important;
+  border-color: #ecceb7 !important;
+}
+
+.carousel1 {
+  overflow: auto;
+  width: 100%;
+  position: relative;
+}
+
+.carousel__container {
+  white-space: nowrap;
+  margin: 0;
+  padding-bottom: 10px;
+  padding-left: 20px;
+}
+
+.carousel-item1 {
+  border-radius: 20px !important;
+  height: auto;
+  overflow: hidden;
+  position: relative;
+  display: inline-block !important;
+  margin-right: 10px;
+  -webkit-transition: all 0.45s;
+  transition: all 0.45s;
+  -webkit-transform-origin: center left;
+  transform-origin: center left;
+  white-space: normal !important;
 }
