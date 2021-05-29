@@ -6,18 +6,17 @@ import 'firebase/auth';
 import 'firebase/storage';
 import LoginButton from './LoginButton';
 import { LogoutButton } from './LogoutButton';
+import ShoppingCart from './ShoppingCart';
 
-export default function Navigate() {
-  const [user, setUser] = useState(null);
+export default function Navigate({ products, combo }) {
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      setUser(user);
+    }
+  });
 
-  useEffect(() => {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        setUser(user);
-      }
-    });
-  }, [user]);
-
+  const [user, setUser] = useState();
+  console.log('desde nav ', user);
   const handleAuth = () => {
     let provider = new firebase.auth.GoogleAuthProvider();
     firebase
@@ -121,6 +120,7 @@ export default function Navigate() {
             <LoginButton handleAuth={handleAuth} />
           )}
         </div>
+        <ShoppingCart products={products} combo={combo} />
 
         <a
           href='https://www.instagram.com/menoscaosporfavor/'

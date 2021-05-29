@@ -16,6 +16,7 @@ export default function SectionCombo({ combo }) {
       style={style}
       link={data.link}
       key={data.id}
+      id={data.id}
     />
   ));
 

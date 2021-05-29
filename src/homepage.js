@@ -13,16 +13,14 @@ import SectionCombo from './components/SectionCombo';
 import axios from 'axios';
 import SectionProducts from './components/SectionProducts';
 import Navigate from './components/navigate';
-import 'firebase/firestore';
 export default function HomePage() {
   const style = {
     backgroundColor: '#fff',
     boxShadow: '0rem 0.5rem 1rem rgba(0, 0, 0, 0.15)',
   };
-
   const [combo, setCombo] = useState([]);
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
+
   useEffect(() => {
     let cancel;
     const getCombos = async () => {
@@ -48,55 +46,9 @@ export default function HomePage() {
     return () => canceled;
   }, []);
 
-  useEffect(() => {
-    db.collection('cart').onSnapshot((querySnapshot) => {
-      var p = [];
-      querySnapshot.forEach((doc) => {
-        p.push(doc.data());
-        products.map((i) => {
-          if (i.id == doc.data().id) {
-            i.cart = true;
-          }
-        });
-      });
-
-      setCart(p);
-    });
-  }, []);
-
-  function addtocart(item) {
-    products.map((i) => {
-      if (i.id == item.id) {
-        i.cart = true;
-      }
-    });
-
-    db.collection('cart').doc(`${item.id}`).set(item, { merge: true });
-  }
-
-  function removetocart(item) {
-    products.map((i) => {
-      if (i.id == item.id) {
-        i.cart = false;
-      }
-    });
-    db.collection('cart').doc(`${item.id}`).delete();
-  }
-
-  function increase(item) {
-    db.collection('cart')
-      .doc(`${item.id}`)
-      .update('quantity', fs.firestore.FieldValue.increment(1));
-  }
-  function decrease(item) {
-    db.collection('cart')
-      .doc(`${item.id}`)
-      .update('quantity', fs.firestore.FieldValue.increment(-1));
-  }
-
   return (
     <Fragment>
-      <Navigate />
+      <Navigate products={products} combo={combo} />
       <Container className='text-center mt-5 pt-4 back '>
         <Row>
           <Col>
