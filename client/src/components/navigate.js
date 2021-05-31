@@ -16,7 +16,6 @@ export default function Navigate({ products, combo }) {
   });
 
   const [user, setUser] = useState();
-  console.log('desde nav ', user);
   const handleAuth = () => {
     let provider = new firebase.auth.GoogleAuthProvider();
     firebase
@@ -114,11 +113,11 @@ export default function Navigate({ products, combo }) {
           </div>
         </Nav>
         <div className='nav-link'>
-          {user ? (
-            <LogoutButton user={user} handleLogout={handleLogout} />
-          ) : (
-            <LoginButton handleAuth={handleAuth} />
-          )}
+          {/* {user ? (
+              <LogoutButton user={user} handleLogout={handleLogout} />
+            ) : (
+              <LoginButton handleAuth={handleAuth} />
+            )} */}
         </div>
         <ShoppingCart products={products} combo={combo} />
 

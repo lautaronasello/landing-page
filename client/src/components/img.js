@@ -5,7 +5,7 @@ export default function Img(props) {
 
   return (
     <div
-      className='text-center p-3 mt-4 d-inline-block'
+      className='text-center p-3 d-inline-block'
       style={{ backgroundColor: '#ecd3c0' }}
     >
       <img src={img} className='img-fluid' alt={alt} />

@@ -5,14 +5,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import firebase from 'firebase/app';
 
-export default function ShoppingCart({ products, combo }) {
+export default function ShoppingCart() {
   const [database, setDatabase] = useState('data');
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         setUser(user);
+        setDatabase(user.email);
       }
-      setDatabase(user.email);
     });
   }, []);
 
@@ -29,8 +29,6 @@ export default function ShoppingCart({ products, combo }) {
     });
   }, [database]);
 
-  const [cart, setCart] = useState([]);
-  console.log('user desde shopping ', user);
   function increase(item) {
     if (user) {
       db.collection(user.email)
@@ -45,6 +43,7 @@ export default function ShoppingCart({ products, combo }) {
         .update({ qty: fs.firestore.FieldValue.increment(-1) });
     }
   }
+
   function total() {
     let x = 0;
     cart.map((i) => {
@@ -59,6 +58,7 @@ export default function ShoppingCart({ products, combo }) {
     }
   }
 
+  const [cart, setCart] = useState([]);
   return (
     <div className='me-3'>
       <DropdownButton
@@ -93,7 +93,6 @@ export default function ShoppingCart({ products, combo }) {
               {cart.map((i, index) => (
                 <tr key={i.id}>
                   <th scope='row'>{index + 1}</th>
-
                   <td>{i.name}</td>
                   <td>AR${i.price}</td>
                   <td>{i.qty}</td>
@@ -129,12 +128,20 @@ export default function ShoppingCart({ products, combo }) {
             </tbody>
           </table>
         </div>
-        <div className='row mt-2'>
-          <div className='col-6 text-center'>
+        <div className='row mt-2 text-center'>
+          <div className='col-6 my-auto'>
             <h4>TOTAL: AR${total()}</h4>
           </div>
-          <div className='col-6'>
-            <button className='btn btn-primary'>Comprar</button>
+          <div className='col-6 mb-2'>
+            <form action='http://localhost:3001/checkout' method='POST'>
+              <input type='hidden' name='title' value='prods.menoscaos' />
+              <input type='hidden' name='price' value={total()} />
+              <input
+                type='submit'
+                value='Comprar'
+                className='btn btn-primary'
+              />
+            </form>
           </div>
         </div>
       </DropdownButton>{' '}

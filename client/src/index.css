@@ -115,10 +115,17 @@ p {
   border-color: #ecd3c0 !important;
 }
 
+.btn-primary-card {
+  font-weight: bold !important;
+  color: #fff !important;
+  background-color: #ecceb7 !important;
+  border-color: #ecd3c0 !important;
+}
+
 .btn-primary:hover {
   color: #fff;
   background-color: #ecceb7 !important;
-  border-color: #ecceb7 !important;
+  border-color: #c0aa99 !important;
 }
 
 .carousel1 {

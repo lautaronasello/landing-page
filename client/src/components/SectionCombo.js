@@ -3,7 +3,12 @@ import CardSell from './CardSell';
 
 export default function SectionCombo({ combo }) {
   const style = {
-    width: '250px',
+    width: '300px',
+    minHeight: '400px',
+  };
+
+  const minHeightStyle = {
+    minHeight: '160px',
   };
 
   const content = combo.map((data) => (
@@ -17,11 +22,12 @@ export default function SectionCombo({ combo }) {
       link={data.link}
       key={data.id}
       id={data.id}
+      minHeightStyle={minHeightStyle}
     />
   ));
 
   return (
-    <section className='carousel1'>
+    <section className='carousel1 col-12'>
       <div className='carousel__container'>{content}</div>
     </section>
   );

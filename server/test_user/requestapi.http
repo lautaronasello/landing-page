@@ -1,0 +1,4 @@
+post https://api.mercadopago.com/users/test_user?access_token=APP_USR-563187816156166-053018-9367c6927113a71db3fc1c065b532a5c-207533825 HTTP/1.1
+
+{"site_id":"MLA"}
+

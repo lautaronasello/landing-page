@@ -1,0 +1,29 @@
+{
+  "users":[
+    {
+      "id": 767588494,
+      "nickname": "TETE788453",
+      "password": "qatest546",
+      "site_status": "active",
+      "email": "test_user_97461356@testuser.com",
+      "created_at":"30/05/2021",
+      "credentials":{
+        "public_key":"APP_USR-33881d7a-88e9-4e8b-9cd0-0d10d8d1d212",
+        "access_token":"APP_USR-1810810111840727-053019-1eef39c1f4d3bfd3ecc7be148e1b4382-767588494"
+      }
+    },
+    {
+      "id": 767584375,
+      "nickname": "TETE9323111",
+      "password": "qatest8259",
+      "site_status": "active",
+      "email": "test_user_57615608@testuser.com",
+      "created_at":"30/05/2021",
+      "credentials":{
+        "public_key":"APP_USR-2f667fcd-074f-4f11-a5be-ffbd6f8e9ebd",
+        "access_token":"APP_USR-5487695746112121-053019-aaad753afb1eb1a8fef3141a587b61a4-767584375"
+      }
+
+    }
+  ]
+}

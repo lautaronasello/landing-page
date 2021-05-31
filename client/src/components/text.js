@@ -1,10 +1,10 @@
 import React from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 
 export default function Text(props) {
   const { titleText, secondaryText } = props;
   return (
-    <Row className='justify-content-center align-items-center'>
+    <div className='row'>
       <Col
         md={12}
         className='text-center p-3 shadow'
@@ -13,6 +13,6 @@ export default function Text(props) {
         <h4>{titleText} </h4>
         <p className='lead'>{secondaryText}</p>
       </Col>
-    </Row>
+    </div>
   );
 }
