@@ -12,7 +12,7 @@ export default function BackNav() {
           style={{ width: '25', height: '25' }}
           icon={faArrowLeft}
         />
-        <p className='text-dark d-inline-block m-0'>Volver</p>
+        Volver
       </Navbar.Brand>
     </Navbar>
   );

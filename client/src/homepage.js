@@ -192,7 +192,7 @@ export default function HomePage() {
           <Col lg={6} sm={6} className='mt-5 pt-4'>
             <Contact template='template_mayoristas' btnValue='Enviar!' />
           </Col>
-          <Col lg={6} sm={6} className='mb-3'>
+          <Col lg={6} sm={6} className='mb-3 mt-4'>
             <Img img={apilado} alt='productos' />
           </Col>
         </Row>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { db, fs } from '../index';
 import firebase from 'firebase/app';
 
-export default function ShoppingCart() {
+export default function ShoppingCart({ subTotal }) {
   const [database, setDatabase] = useState('data');
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -42,18 +42,18 @@ export default function ShoppingCart() {
     }
   }
 
-  function total() {
-    let x = 0;
-    cart.map((i) => {
-      x += i.price * i.qty;
-    });
-    return x;
-  }
-
   function removetocart(item) {
     if (user) {
       db.collection(database).doc(`${item.name}`).delete();
     }
+  }
+
+  function total() {
+    var x = 0;
+    cart.map((i) => {
+      x += i.price * i.qty;
+    });
+    return x;
   }
 
   return (
@@ -107,8 +107,12 @@ export default function ShoppingCart() {
           </tbody>
         </table>
       </div>
-      <div className='row mt-2 text-center ps-3'>
-        <h4>TOTAL: AR${total()}</h4>
+      <div className='row mt-2 text-right pe-3'>
+        {subTotal ? (
+          <p>SUBTOTAL: AR${subTotal}</p>
+        ) : (
+          <p>SUBTOTAL:AR${total()}</p>
+        )}
       </div>
       <div className='text-center my-2'>
         {ActualUrl.pathname === '/homepage' ? (
@@ -120,8 +124,6 @@ export default function ShoppingCart() {
           </button>
         ) : (
           <>
-            <input type='hidden' name='title' value='prods.menoscaos' />
-            <input type='hidden' name='price' value={total()} />
             <input
               type='submit'
               value='Comprar'

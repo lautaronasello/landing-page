@@ -24,8 +24,17 @@ app.get('/send-email', function (req, res) {
 });
 
 app.post('/checkout', async (req, res) => {
-  const { name, email, phone, payment, shipping, instagram } = req.body;
-
+  const { name, email, phone, payment, shipping, instagram, prods } = req.body;
+  text = `
+Orden de Compra de ${name}
+Email: ${email} 
+Phone: ${phone}
+Instagram: ${instagram}
+Forma de pago: ${payment}
+Forma de entrega: ${shipping}
+Productos:
+${prods}
+`;
   if (payment === 'mercado pago') {
     let preference = {
       items: [
@@ -51,40 +60,57 @@ app.post('/checkout', async (req, res) => {
       .catch(function (error) {
         console.log(error);
       });
+
+    let transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true, // true for 465, false for other ports
+      auth: {
+        user: 'lautaronasello@gmail.com',
+        pass: 'kqgselskvibwmshb',
+      },
+    });
+    // send mail with defined transport object
+    await transporter.sendMail({
+      from: `${name}, <${email}> `, // sender address
+      to: 'lautaronasello1@gmail.com',
+      subject: 'Compra nueva en MenosCaosTeam', // Subject line
+      text: text,
+    });
+    await transporter.sendMail({
+      from: 'MenosCaosTeam, <menoscaosporfavor@gmail.com>', // sender address
+      to: `${email}`,
+      subject: 'Gracias por tu compra en Menos Caos por Favor', // Subject line
+      text: 'Gracias por tu compra! En breve nos estaremos comunicando con vos para arreglar la entrega del producto',
+    });
   } else {
+    let transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 465,
+      secure: true, // true for 465, false for other ports
+      auth: {
+        user: 'lautaronasello@gmail.com',
+        pass: 'kqgselskvibwmshb',
+      },
+    });
+    transporter.verify().then(() => {
+      console.log('ready for send emails');
+    });
+    // send mail with defined transport object
+    await transporter.sendMail({
+      from: `${name}, <${email}> `, // sender address
+      to: 'lautaronasello1@gmail.com',
+      subject: 'Compra nueva en MenosCaosTeam', // Subject line
+      text: text, // html body
+    });
+    await transporter.sendMail({
+      from: 'MenosCaosTeam, <menoscaosporfavor@gmail.com>', // sender address
+      to: `${email}`,
+      subject: 'Gracias por tu compra en Menos Caos por Favor', // Subject line
+      text: 'Gracias por tu compra! En breve nos estaremos comunicando con vos para arreglar la entrega del producto',
+    });
     res.redirect('http://localhost:3000/homepage');
   }
-
-  contentHTML = `
-  <h1>Orden de Compra de ${name}<h1>
-  <ul>
-  <li>Email: ${email} </li>
-  <li>Phone: ${phone} </li>
-  <li>Instagram: ${instagram}</li>
-  <li>Forma de pago: ${payment}</li>
-  <li>Forma de entrega: ${shipping}</li>
-  </ul>
-  `;
-
-  let transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 465,
-    secure: true, // true for 465, false for other ports
-    auth: {
-      user: 'lautaronasello@gmail.com',
-      pass: 'kqgselskvibwmshb',
-    },
-  });
-  transporter.verify().then(() => {
-    console.log('ready for send emails');
-  });
-  // send mail with defined transport object
-  await transporter.sendMail({
-    from: `${name}, <${email}> `, // sender address
-    to: 'lautaronasello@gmail.com',
-    subject: 'Compra nueva en MenosCaosTeam', // Subject line
-    html: contentHTML, // html body
-  });
 });
 
 app.get('/feedback', function (req, res) {

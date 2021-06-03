@@ -24,20 +24,26 @@ export default function CardSell({
   const [user, setUser] = useState();
 
   const addToCart = () => {
-    db.collection(user.email)
-      .doc(`${nameCombo}`)
-      .set({
-        id: `${id}`,
-        name: `${nameCombo}`,
-        price: `${price}`,
-        qty: 1,
-      })
-      .then(() => {
-        console.log('se subio bien');
-      })
-      .catch((e) => {
-        console.error('error: ', e);
-      });
+    if (user) {
+      db.collection(user.email)
+        .doc(`${nameCombo}`)
+        .set({
+          id: `${id}`,
+          name: `${nameCombo}`,
+          price: `${price}`,
+          qty: 1,
+        })
+        .then(() => {
+          console.log('se subio bien');
+        })
+        .catch((e) => {
+          console.error('error: ', e);
+        });
+    } else {
+      alert(
+        'Necesitas estar conectado con una cuenta de Gmail para poder comprar'
+      );
+    }
   };
 
   return (

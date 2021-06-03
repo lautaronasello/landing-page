@@ -1,11 +1,11 @@
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import BackNav from '../components/back-nav';
 import ShoppingCart from '../components/ShoppingCart';
+import { db } from '../index';
+import firebase from 'firebase/app';
 
 export default function Checkout() {
-  const [payment, setPayment] = useState();
-  const [shipping, setShipping] = useState();
+  const [database, setDatabase] = useState('data');
   const [datos, setDatos] = useState([
     {
       name: 'Nombre y Apellido',
@@ -15,13 +15,24 @@ export default function Checkout() {
     },
   ]);
 
-  function handlePayment(e) {
-    setPayment(e.target.value);
-  }
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      setDatabase(user.email);
+    }
+  });
 
-  function handleShipping(e) {
-    setShipping(e.target.value);
-  }
+  useEffect(() => {
+    db.collection(database).onSnapshot((querySnapshot) => {
+      var p = [];
+      querySnapshot.forEach((doc) => {
+        p.push(doc.data());
+      });
+
+      setCart(p);
+    });
+  }, [database]);
+
+  const [cart, setCart] = useState([]);
 
   function handleInputChange(e) {
     const target = e.target;
@@ -32,10 +43,50 @@ export default function Checkout() {
       [name]: value,
     });
   }
-  useEffect(() => {
-    console.log(payment, datos.name);
-  }, [payment, datos]);
 
+  const [subTotal, setSubTotal] = useState();
+  const [nameBuyProds, setNameBuyProds] = useState([]);
+  useEffect(() => {
+    var x = 0;
+    var xname = '';
+    cart.map((i) => {
+      x += i.price * i.qty;
+      xname += i.qty + ' ' + i.name + '; ';
+    });
+    setNameBuyProds(xname);
+    setSubTotal(x.toString());
+  }, [cart]);
+  console.log(nameBuyProds);
+
+  function handleShipping(e) {
+    setShipping(e.target.value);
+  }
+  function handlePayment(e) {
+    setPayment(e.target.value);
+  }
+  const [payment, setPayment] = useState('');
+  const [shipping, setShipping] = useState('');
+  const [total, setTotal] = useState();
+  const [primerPrecio, setPrimerPrecio] = useState();
+  useEffect(() => {
+    var x = parseInt(subTotal);
+    if (shipping === 'dentro de circunvalacion') {
+      x += 300;
+    } else if (shipping === 'fuera de circunvalacion') {
+      x += 400;
+    }
+    setPrimerPrecio(x);
+  }, [shipping, subTotal]);
+
+  useEffect(() => {
+    var paymentMP = Math.floor(parseInt(primerPrecio) * 10) / 100;
+    var x = primerPrecio;
+    if (payment === 'mercado pago') {
+      x += paymentMP;
+      setTotal(x);
+    }
+    setTotal(x);
+  }, [payment, primerPrecio]);
   return (
     <>
       <BackNav />
@@ -51,61 +102,36 @@ export default function Checkout() {
                   <label className='form-label my-2'>
                     Opciones de Entrega
                     <select
+                      value={shipping}
+                      onChange={handleShipping}
                       className='form-select'
                       aria-label='Default select example'
                       id='shipping'
                       name='shipping'
-                      value={shipping}
                       required
-                      onChange={handleShipping}
                     >
-                      <option disabled value='shipping default'>
+                      <option selected disabled value=''>
                         Elegir forma de entrega/retiro
                       </option>
-                      <option value='Nueva Cordoba'>
+                      <option value='nueva cordoba'>
                         Nueva Córdoba (SIN COSTO)
                       </option>
-                      <option value='Barrio Maipú'>
+                      <option value='barrio maipu'>
                         Barrio Maipú (SIN COSTO){' '}
                       </option>
-                      <option value='Nuevocentro'>
+                      <option value='nuevocentro'>
                         Nuevocentro Shopping (SIN COSTO){' '}
                       </option>
-                      <option value='Dentro de circunvalacion'>
+                      <option value='dentro de circunvalacion'>
                         Cordoba capital dentro de circunvalacion
                       </option>
-                      <option value='Fuera de circunvalacion'>
+                      <option value='fuera de circunvalacion'>
                         Cordoba capital fuera de circunvalacion
                       </option>
-                      <option value='Andreani o Epick'>
+                      <option value='andreani o Epick'>
                         Entregas en todo el pais por Andreani o Epick
                       </option>
                     </select>{' '}
-                  </label>
-                  <label className='form-label my-2'>
-                    Opciones de Pago{' '}
-                    <select
-                      value={payment}
-                      onChange={handlePayment}
-                      className='form-select'
-                      aria-label='Default select example'
-                      id='payment'
-                      name='payment'
-                      required
-                    >
-                      <option disabled value='payment default'>
-                        Elegir forma de pago
-                      </option>
-                      <option value='efectivo entrega'>
-                        Efectivo en la entrega (Solo Cba. Capital)
-                      </option>
-                      <option value='transferencia Bancaria'>
-                        Transferencia Bancaria
-                      </option>
-                      <option value='mercado pago'>
-                        Mercado Pago (10% Recargo)
-                      </option>
-                    </select>
                   </label>
                   <label htmlFor='name' className='form-label my-2'>
                     Nombre y Apellido *
@@ -159,15 +185,43 @@ export default function Checkout() {
                     required
                     onChange={handleInputChange}
                   />{' '}
+                  <label className='form-label my-2'>
+                    Opciones de Pago{' '}
+                    <select
+                      value={payment}
+                      onChange={handlePayment}
+                      className='form-select'
+                      aria-label='Default select example'
+                      id='payment'
+                      name='payment'
+                      required
+                    >
+                      <option selected disabled value=''>
+                        Elegir forma de pago
+                      </option>
+                      <option value='efectivo entrega'>
+                        Efectivo en la entrega (Solo Cba. Capital)
+                      </option>
+                      <option value='transferencia Bancaria'>
+                        Transferencia Bancaria
+                      </option>
+                      <option value='mercado pago'>
+                        Mercado Pago (10% Recargo)
+                      </option>
+                    </select>
+                  </label>
                 </div>
               </div>
               <div className='col-md-8 col-sm-12 my-3'>
-                <div className='bg-white'>
-                  <ShoppingCart />
-                  {}
+                <div className='bg-white text-center'>
+                  <ShoppingCart subTotal={subTotal} />
+                  <h4 className='pb-3'>TOTAL: AR${total}</h4>
                 </div>
               </div>
             </div>{' '}
+            <input type='hidden' name='title' value={nameBuyProds} />
+            <input type='hidden' name='price' value={total} />
+            <input type='hidden' name='prods' value={nameBuyProds} />
           </form>
         </div>
       </div>
