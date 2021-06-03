@@ -8,7 +8,7 @@ export default function SectionProducts({ products }) {
   };
 
   const minHeightStyle = {
-    minHeight: '110px',
+    minHeight: '65px',
   };
 
   const content = products.map((data) => (
@@ -16,14 +16,17 @@ export default function SectionProducts({ products }) {
       nameCombo={data.name}
       stock={data.stock}
       price={data.price}
-      prods={
-        data.stock > 0 ? null : <p style={{ color: 'red' }}>*No hay stock</p>
-      }
+      prods={data.stock === 0 && <p style={{ color: 'red' }}>*Sin Stock</p>}
       style={style}
       key={data.id}
       data={data}
       id={data.id}
       minHeightStyle={minHeightStyle}
+      classNameH5Div={
+        data.stock > 0
+          ? 'pt-1 ps-3 justify-content-center align-items-center d-flex'
+          : 'pt-1 ps-3'
+      }
     />
   ));
 

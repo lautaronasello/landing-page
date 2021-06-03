@@ -8,7 +8,7 @@ export default function SectionCombo({ combo }) {
   };
 
   const minHeightStyle = {
-    minHeight: '160px',
+    minHeight: '135px',
   };
 
   const content = combo.map((data) => (
@@ -23,11 +23,12 @@ export default function SectionCombo({ combo }) {
       key={data.id}
       id={data.id}
       minHeightStyle={minHeightStyle}
+      classNameH5Div={'ps-3 pt-1'}
     />
   ));
 
   return (
-    <section className='carousel1 col-12'>
+    <section className='carousel1 col-12 '>
       <div className='carousel__container'>{content}</div>
     </section>
   );

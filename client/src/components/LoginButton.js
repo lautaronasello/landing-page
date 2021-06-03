@@ -2,8 +2,11 @@ import React from 'react';
 
 export default function LoginButton({ handleAuth }) {
   return (
-    <button className='btn btn-light border' onClick={handleAuth}>
-      <p className='m-0 p-0'>Login/Registrarse</p>
+    <button
+      className='btn btn-light btn-sm border my-auto '
+      onClick={handleAuth}
+    >
+      Login/Registrarse
     </button>
   );
 }

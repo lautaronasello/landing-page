@@ -12,6 +12,7 @@ export default function CardSell({
   stock,
   id,
   minHeightStyle,
+  classNameH5Div,
 }) {
   useEffect(() => {
     firebase.auth().onAuthStateChanged((user) => {
@@ -40,23 +41,18 @@ export default function CardSell({
   };
 
   return (
-    <div className='mt-4 me-4 ms-1 carousel-item1  rounded-0' style={style}>
+    <div className='mt-4 me-4 ms-1 carousel-item1  rounded-0 ' style={style}>
       <Img img={imgtest} alt='alt raro' />
-      <div className='p-3' style={minHeightStyle}>
-        <h5 className=''>{nameCombo}</h5>
+      <div className={classNameH5Div} style={minHeightStyle}>
+        <h5>{nameCombo}</h5>
         <div>{prods}</div>
       </div>
-      <div className='card-body row'>
+      <div className=' row px-3'>
         {stock === 0 ? (
-          <button
-            className='btn btn-primary btn-sm disabled'
-            onClick={() => addToCart()}
-          >
-            AR${price}
-          </button>
+          <button className='btn btn-primary disabled'>AR${price}</button>
         ) : (
           <button
-            className='btn btn-primary btn-sm shadow'
+            className='btn btn-primary shadow'
             onClick={() => addToCart()}
           >
             AR${price}
@@ -66,28 +62,3 @@ export default function CardSell({
     </div>
   );
 }
-
-/* <div className='my-4 me-4 ms-1 carousel-item1 card ' style={style}>
-      <Img img={imgtest} alt='alt raro' />
-      <div className='p-3' style={minHeightStyle}>
-        <h5 className=''>{nameCombo}</h5>
-        <div>{prods}</div>
-      </div>
-      <div className='card-body'>
-        {stock === 0 ? (
-          <button
-            className='btn btn-primary btn-sm disabled '
-            onClick={() => addToCart()}
-          >
-            AR${price}
-          </button>
-        ) : (
-          <button
-            className='btn btn-primary btn-sm'
-            onClick={() => addToCart()}
-          >
-            AR${price}
-          </button>
-        )}
-      </div>
-    </div> */

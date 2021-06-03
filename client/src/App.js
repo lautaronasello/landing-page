@@ -3,7 +3,7 @@ import Landing from './landing';
 import HomePage from './homepage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import StarterPack from './pages/StarterPack.js';
+import Checkout from './pages/Checkout';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <Switch>
         <Route exact path='/' component={Landing} />
         <Route exact path='/homepage' component={HomePage} />
-        <Route exact path='/starter-pack' component={StarterPack} />
+        <Route exact path='/checkout' component={Checkout} />
       </Switch>
     </BrowserRouter>
   );

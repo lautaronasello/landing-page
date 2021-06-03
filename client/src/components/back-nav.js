@@ -8,11 +8,11 @@ export default function BackNav() {
     <Navbar expand='lg' className='bg-nav shadow bg-gradient fixed-top'>
       <Navbar.Brand href='/homepage'>
         <FontAwesomeIcon
-          className='d-inline-block align-top mx-3'
-          style={{ width: '30', height: '30' }}
+          className='d-inline-block  mx-3'
+          style={{ width: '25', height: '25' }}
           icon={faArrowLeft}
         />
-        <h4 className='d-inline-block m-0 '>Volver </h4>
+        <p className='text-dark d-inline-block m-0'>Volver</p>
       </Navbar.Brand>
     </Navbar>
   );

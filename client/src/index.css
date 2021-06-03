@@ -128,6 +128,11 @@ p {
   border-color: #c0aa99 !important;
 }
 
+.dropdown-menu-right {
+  right: -16px !important;
+  left: auto;
+}
+
 .carousel1 {
   overflow: auto;
   width: 100%;
