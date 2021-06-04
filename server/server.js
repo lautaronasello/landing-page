@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const nodemailer = require('nodemailer');
 const cors = require('cors');
@@ -6,6 +8,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+let port = process.env.PORT || 3001;
 
 const mercadopago = require('mercadopago');
 // Agrega credenciales
@@ -121,7 +125,10 @@ app.get('/feedback', function (req, res) {
   });
 });
 
+app.get('/notifications', function (req, res) {
+  res.send('<h1>hola</h1>');
+});
 //server
-app.listen(3001, () => {
-  console.log('server on port 3001');
+app.listen(port, () => {
+  console.log(`server on port ${port}`);
 });

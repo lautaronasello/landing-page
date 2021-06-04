@@ -91,11 +91,15 @@ export default function Checkout() {
     <>
       <BackNav />
       <div
-        className='justify-content-center align-items-center d-flex mt-5'
+        cla
+        ssName='justify-content-center align-items-center d-flex mt-5'
         style={{ minHeight: '90vh' }}
       >
         <div className='container'>
-          <form action='http://localhost:3001/checkout' method='POST'>
+          <form
+            action='http://menoscaosporfavorbackend.herokuapp.com/checkout'
+            method='POST'
+          >
             <div className='row'>
               <div className='col-md-4 col-sm-12 my-3'>
                 <div className='card p-3'>

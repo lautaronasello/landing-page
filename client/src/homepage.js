@@ -13,7 +13,16 @@ import SectionCombo from './components/SectionCombo';
 import axios from 'axios';
 import SectionProducts from './components/SectionProducts';
 import Navigate from './components/navigate';
+import firebase from 'firebase/app';
 export default function HomePage() {
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      setPrimerUser(user);
+    }
+  });
+
+  const [primerUser, setPrimerUser] = useState();
+
   const style = {
     backgroundColor: '#fff',
     boxShadow: '0rem 0.5rem 1rem rgba(0, 0, 0, 0.15)',
@@ -48,7 +57,7 @@ export default function HomePage() {
 
   return (
     <Fragment>
-      <Navigate products={products} combo={combo} />
+      <Navigate primerUser={primerUser} products={products} combo={combo} />
       <Container className='text-center mt-5 pt-4 back '>
         <Row>
           <Col>
