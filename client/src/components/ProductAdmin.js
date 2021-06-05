@@ -3,7 +3,7 @@ import AdminDeleteProduct from './AdminDeleteProduct';
 import AdminPostProduct from './AdminPostProduct';
 import AdminPutProduct from './AdminPutProduct';
 
-export default function ProductAdmin({ products, combo }) {
+export default function ProductAdmin({ products, combo, jwt }) {
   const [action, setAction] = useState('PUT');
   function handleRefresh() {
     setAction('PUT');
@@ -30,7 +30,7 @@ export default function ProductAdmin({ products, combo }) {
       </button>
       {action === 'PUT' && <AdminPutProduct />}
       {action === 'DELETE' && <AdminDeleteProduct />}
-      {action === 'POST' && <AdminPostProduct combo={combo} />}
+      {action === 'POST' && <AdminPostProduct jwt={jwt} combo={combo} />}
     </div>
   );
 }

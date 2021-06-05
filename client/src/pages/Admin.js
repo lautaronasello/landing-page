@@ -3,8 +3,38 @@ import BackNav from '../components/back-nav';
 import ProductAdmin from '../components/ProductAdmin';
 import axios from 'axios';
 import ComboAdmin from '../components/ComboAdmin';
+import firebase from 'firebase/app';
 
 export default function Admin() {
+  const [userAdmin, setUserAdmin] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [jwt, setJwt] = useState();
+  useEffect(() => {
+    setLoading(true);
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setLoading(false);
+        setUserAdmin(user);
+      }
+    });
+  }, [userAdmin]);
+
+  var ActualUrl = window.location.pathname;
+
+  useEffect(() => {
+    if (ActualUrl === '/admin') {
+      axios
+        .post('http://localhost:1337/auth/local', {
+          identifier: userAdmin.email,
+          password: 'ciberiano',
+        })
+        .then((res) => res.data && setJwt(res.data.jwt))
+        .catch((err) => console.log(err));
+    }
+  }, [ActualUrl, userAdmin]);
+
+  console.log('este es el jwt ', jwt);
+
   useEffect(() => {
     let canceled;
     const getProducts = async () => {
@@ -42,38 +72,67 @@ export default function Admin() {
   var changeToProducts = () => {
     setSectionAppears('products');
   };
-  return (
-    <div>
-      <BackNav />
-      <div className='container mt-5'>
-        <div className='row'>
-          <div className='col-12 text-center'>
-            <h3>Hacé click en la seccion a modificar</h3>
-            <hr />
 
-            <button
-              className='btn btn-outline-dark mx-2'
-              onClick={changeToCombos}
-            >
-              Combos
-            </button>
-
-            <button
-              className='btn btn-outline-dark mx-2'
-              onClick={changeToProducts}
-            >
-              Productos
-            </button>
+  if (loading)
+    return (
+      <div className='container'>
+        <div className='row text-center justify-content-center'>
+          <div className='col-6'>
+            <div className='spinner-border text-warning mt-5' role='status'>
+              <span className='visually-hidden' />
+            </div>
           </div>
         </div>
       </div>
-      <div className='text-center my-5' style={{ background: '#ecd3c0' }}>
-        {sectionAppears === 'products' ? (
-          <ProductAdmin combo={combo} products={products} />
-        ) : (
-          <ComboAdmin combo={combo} />
-        )}
+    );
+
+  if (userAdmin.uid === 'I3dKx9Fc81ZLrPOUAAktWKd5IAi2') {
+    return (
+      <div>
+        <BackNav />
+        <div className='container mt-5'>
+          <div className='row'>
+            <div className='col-12 text-center'>
+              <h3>Hacé click en la seccion a modificar</h3>
+              <hr />
+
+              <button
+                className='btn btn-outline-dark mx-2'
+                onClick={changeToCombos}
+              >
+                Combos
+              </button>
+
+              <button
+                className='btn btn-outline-dark mx-2'
+                onClick={changeToProducts}
+              >
+                Productos
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className='text-center my-5' style={{ background: '#ecd3c0' }}>
+          {sectionAppears === 'products' ? (
+            <ProductAdmin
+              jwt={jwt}
+              userAdmin={userAdmin}
+              combo={combo}
+              products={products}
+            />
+          ) : (
+            <ComboAdmin combo={combo} />
+          )}
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else
+    return (
+      <div
+        className='justify-content-center align-items-center d-flex'
+        style={{ minHeight: '100vh' }}
+      >
+        <h1>NO TENES ACCESO A ESTA PARTE DE LA PAGINA :)</h1>
+      </div>
+    );
 }

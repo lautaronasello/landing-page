@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { InputGroup, FormControl, Form } from 'react-bootstrap';
 
-export default function AdminPostProduct({ combo }) {
-  const [name, setName] = useState('Nombre y Apellido');
-  const [description, setDescription] = useState('Descripcion del producto');
+export default function AdminPostProduct({ combo, jwt }) {
+  const [name, setName] = useState('Ultimo producto');
+  const [description, setDescription] = useState(
+    'Producto nuevo de menos caos por favor'
+  );
   const [price, setPrice] = useState();
   const [stock, setStock] = useState();
-  const [selectCombo, setSelectCombo] = useState();
+  const [uploadImage, setUploadImage] = useState();
+  const [productImage, setProductImage] = useState();
 
   function handleNameChange(e) {
     let value = e.target.value;
@@ -24,15 +27,52 @@ export default function AdminPostProduct({ combo }) {
     setPrice(value);
   }
 
+  var removeItemFromArr = (arr, item) => {
+    var i = arr.indexOf(item);
+    i !== -1 && arr.splice(i, 1);
+  };
+
+  let selectCombo = [];
+
   function handleComboChange(e) {
-    let value = e.target.value;
-    setSelectCombo(value);
+    var checked = e.target.checked;
+    let value = parseInt(e.target.name);
+    if (checked) {
+      selectCombo.push(parseInt(value));
+    } else {
+      removeItemFromArr(selectCombo, value);
+    }
+    console.log(selectCombo, 'checked: ', checked, ', value: ', value);
   }
 
   function handleStockChange(e) {
     let value = e.target.value;
     setStock(value);
   }
+
+  function handleImgChange(e) {
+    var file = e.target.files[0];
+    setUploadImage(file);
+  }
+
+  var handleUploadImg = async () => {
+    const formData = new FormData();
+    formData.append('files', uploadImage);
+
+    await axios
+      .post('http://localhost:1337/upload', formData, {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      })
+      .then((res) => {
+        alert('La imagen se subio bien, ahora podes subir el producto :)');
+        setProductImage(res.data[0].id);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   var handleSubmit = async () => {
     await axios
@@ -43,7 +83,8 @@ export default function AdminPostProduct({ combo }) {
           description: description,
           price: price,
           stock: stock,
-          combos: [6, 3],
+          combos: selectCombo,
+          image: productImage,
         },
         {
           headers: {
@@ -53,18 +94,18 @@ export default function AdminPostProduct({ combo }) {
         }
       )
       .then((res) => {
-        if (res.err) {
-          alert('hay error');
-        } else {
-          alert('se subieron los datos!');
-        }
+        alert('Se subieron los datos');
+        window.location = '/admin';
+      })
+      .catch((err) => {
+        alert(err);
       });
   };
 
   return (
     <div className='col-12 px-5 mt-3 pb-3'>
       <h1>AGREGAR PRODUCTO NUEVO</h1>
-      <div>
+      <div className='text-left'>
         <InputGroup className='mb-3'>
           <InputGroup.Prepend>
             <InputGroup.Text id='basic-addon1'>Nombre</InputGroup.Text>
@@ -111,37 +152,44 @@ export default function AdminPostProduct({ combo }) {
             name='description'
           />
         </InputGroup>
-
-        <InputGroup>
-          <InputGroup.Prepend>
-            <InputGroup.Text>Combo</InputGroup.Text>
-          </InputGroup.Prepend>
-          <Form.Control
-            as='select'
-            id='inlineFormCustomSelect'
-            onChange={handleComboChange}
-            custom
+        <label htmlFor='exampleFormControlFile1'>
+          Primero hacer click en SUBIR antes que en agregar producto{' '}
+        </label>
+        <Form.Group className='text-left'>
+          <Form.File
+            className='d-inline-block'
+            onChange={handleImgChange}
+            id='exampleFormControlFile1'
+          />
+          <button
+            className='btn btn-outline-dark btn-sm mx-3'
+            onClick={handleUploadImg}
           >
-            <option value='null'>Ninguno</option>
-            {combo &&
-              combo.map((data) => {
-                return (
-                  <option key={data.id} value={data.id}>
-                    {data.name}
-                  </option>
-                );
-              })}
-          </Form.Control>
-        </InputGroup>
-        <div className='text-right'>
-          <button className='btn text-decoration-underline'>
-            agregar a otro combo
+            subir
           </button>
+        </Form.Group>
+        <div className='mb-3'>
+          {combo.map((data, i) => {
+            return (
+              <Form.Check
+                onChange={handleComboChange}
+                key={data.id}
+                inline
+                label={data.name}
+                name={data.id}
+                type='checkbox'
+                id={`inline-checkbox-${i + 1}`}
+              />
+            );
+          })}
         </div>
       </div>
-      <button className='btn btn-outline-dark mt-3' onClick={handleSubmit}>
-        escribir datos
-      </button>
+      <input
+        type='reset'
+        value='Agregar Producto'
+        className='btn btn-outline-dark mt-3'
+        onClick={handleSubmit}
+      />
     </div>
   );
 }

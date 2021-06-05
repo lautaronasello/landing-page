@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-scroll';
 import firebase from 'firebase/app';
@@ -51,7 +51,7 @@ export default function Navigate({ products, combo, primerUser }) {
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
       <Navbar.Collapse id='basic-navbar-nav'>
         <Nav className='mr-auto ml-4'>
-          {user.email === 'lautaronasello@gmail.com' && (
+          {user.uid === 'I3dKx9Fc81ZLrPOUAAktWKd5IAi2' && (
             <div className='nav-link'>
               <a href='/admin' className=' hand'>
                 ADMIN
