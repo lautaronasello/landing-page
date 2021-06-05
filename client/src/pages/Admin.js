@@ -1,10 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import BackNav from '../components/back-nav';
-import ComboAdmin from '../components/ComboAdmin';
 import ProductAdmin from '../components/ProductAdmin';
+import axios from 'axios';
+import ComboAdmin from '../components/ComboAdmin';
 
 export default function Admin() {
+  useEffect(() => {
+    let canceled;
+    const getProducts = async () => {
+      const res = await axios.get('http://localhost:1337/products/', {
+        canceledToken: new axios.CancelToken((c) => (canceled = c)),
+      });
+      setProducts(res.data);
+    };
+    getProducts();
+
+    return () => canceled;
+  }, []);
+
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    let cancel;
+    const getCombos = async () => {
+      const res = await axios.get('http://localhost:1337/combos/', {
+        cancelToken: new axios.CancelToken((c) => (cancel = c)),
+      });
+      setCombo(res.data);
+    };
+    getCombos();
+    return () => cancel;
+  }, []);
+
+  const [combo, setCombo] = useState([]);
   const [sectionAppears, setSectionAppears] = useState('combos');
+
   var changeToCombos = () => {
     setSectionAppears('combos');
   };
@@ -38,7 +68,11 @@ export default function Admin() {
         </div>
       </div>
       <div className='text-center my-5' style={{ background: '#ecd3c0' }}>
-        {sectionAppears === 'combos' ? <ComboAdmin /> : <ProductAdmin />}
+        {sectionAppears === 'products' ? (
+          <ProductAdmin combo={combo} products={products} />
+        ) : (
+          <ComboAdmin combo={combo} />
+        )}
       </div>
     </div>
   );

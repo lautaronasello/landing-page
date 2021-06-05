@@ -44,13 +44,13 @@ export default function HomePage() {
 
   useEffect(() => {
     let canceled;
-    const getCombos = async () => {
+    const getProducts = async () => {
       const res = await axios.get('http://localhost:1337/products', {
         canceledToken: new axios.CancelToken((c) => (canceled = c)),
       });
       setProducts(res.data);
     };
-    getCombos();
+    getProducts();
 
     return () => canceled;
   }, []);
