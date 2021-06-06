@@ -49,7 +49,7 @@ ${prods}
         },
       ],
       back_urls: {
-        success: 'http://localhost:3000/checkout',
+        success: 'http://localhost:3000/homepage',
         failure: 'http://localhost:3000/homepage',
         pending: 'http://localhost:3000/homepage',
       },
