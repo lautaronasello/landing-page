@@ -6,10 +6,10 @@ import firebase from 'firebase/app';
 
 export default function Checkout() {
   const [database, setDatabase] = useState('data');
-  const [name, setName] = useState('Nombre y Apellido');
-  const [email, setEmail] = useState('example@email.com');
-  const [instagram, setInstagram] = useState('@instagram');
-  const [phone, setPhone] = useState();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [instagram, setInstagram] = useState('');
+  const [phone, setPhone] = useState('');
 
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -152,6 +152,7 @@ export default function Checkout() {
                     id='name'
                     className='form-control'
                     onChange={handleNameChange}
+                    value={name}
                   />
                   <label htmlFor='email' className='form-label my-2'>
                     Email para enviarte la informacion de Compra, entrega y
@@ -165,6 +166,7 @@ export default function Checkout() {
                     id='email'
                     className='form-control'
                     onChange={handleEmailChange}
+                    value={email}
                   />
                   <label htmlFor='instagram' className='form-label my-2'>
                     Dejanos tu instagram!
@@ -176,6 +178,7 @@ export default function Checkout() {
                     id='instagram'
                     className='form-control'
                     onChange={handleInstagramChange}
+                    value={instagram}
                   />
                   <label htmlFor='phone' className='form-label my-2'>
                     Tel./Whatsapp *
@@ -183,11 +186,12 @@ export default function Checkout() {
                   <input
                     type='tel'
                     name='phone'
-                    placeholder='(Codigo de área)Numero de teléfono'
+                    placeholder='(Codigo de área) Número de teléfono'
                     id='phone'
                     className='form-control'
                     required
                     onChange={handlePhoneChange}
+                    value={phone}
                   />{' '}
                   <label className='form-label my-2'>
                     Opciones de Pago{' '}
@@ -198,8 +202,10 @@ export default function Checkout() {
                       id='payment'
                       name='payment'
                       required
+                      defaultValue='nada'
+                      value={payment}
                     >
-                      <option defaultValue disabled value='nada'>
+                      <option disabled value='nada'>
                         Elegir forma de pago
                       </option>
                       <option value='efectivo entrega'>
@@ -226,7 +232,6 @@ export default function Checkout() {
             <input type='hidden' name='price' value={total} />
             <input type='hidden' name='prods' value={nameBuyProds} />
           </form>
-          <button onClick={() => console.log(email)}>console.log</button>
         </div>
       </div>
     </>

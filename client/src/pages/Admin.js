@@ -33,7 +33,7 @@ export default function Admin() {
     }
   }, [ActualUrl, userAdmin]);
 
-  console.log('este es el jwt ', jwt);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     let canceled;
@@ -47,8 +47,6 @@ export default function Admin() {
 
     return () => canceled;
   }, []);
-
-  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     let cancel;

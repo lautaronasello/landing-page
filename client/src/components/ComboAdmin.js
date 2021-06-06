@@ -3,7 +3,7 @@ import AdminDeleteProduct from './AdminDeleteProduct';
 import AdminPostProduct from './AdminPostProduct';
 import AdminPutProduct from './AdminPutProduct';
 
-export default function ComboAdmin({ combo }) {
+export default function ComboAdmin({}) {
   const [action, setAction] = useState('PUT');
   function handleRefresh() {
     setAction('PUT');
@@ -28,9 +28,6 @@ export default function ComboAdmin({ combo }) {
       <button className='btn btn-outline-dark me-3' onClick={handleDelete}>
         Eliminar Combo
       </button>
-      {action === 'PUT' && <AdminPutProduct />}
-      {action === 'DELETE' && <AdminDeleteProduct />}
-      {action === 'POST' && <AdminPostProduct />}
     </div>
   );
 }

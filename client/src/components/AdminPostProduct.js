@@ -36,9 +36,9 @@ export default function AdminPostProduct({ combo, jwt }) {
 
   function handleComboChange(e) {
     var checked = e.target.checked;
-    let value = parseInt(e.target.name);
+    let value = e.target.name;
     if (checked) {
-      selectCombo.push(parseInt(value));
+      selectCombo.push(value);
     } else {
       removeItemFromArr(selectCombo, value);
     }
@@ -88,14 +88,13 @@ export default function AdminPostProduct({ combo, jwt }) {
         },
         {
           headers: {
-            Authorization:
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjIyODQ4OTM2LCJleHAiOjE2MjU0NDA5MzZ9.WPosF_Eu8C-BRbV7Ur0Z0t2nrSvibCNi4QO7jdfZ9NE',
+            Authorization: `Bearer ${jwt}`,
           },
         }
       )
       .then((res) => {
         alert('Se subieron los datos');
-        window.location = '/admin';
+        // window.location = '/admin';
       })
       .catch((err) => {
         alert(err);
@@ -111,7 +110,7 @@ export default function AdminPostProduct({ combo, jwt }) {
             <InputGroup.Text id='basic-addon1'>Nombre</InputGroup.Text>
           </InputGroup.Prepend>
           <FormControl
-            placeholder='Username'
+            placeholder='Name'
             aria-label='Username'
             aria-describedby='basic-addon1'
             name='name'
@@ -169,19 +168,20 @@ export default function AdminPostProduct({ combo, jwt }) {
           </button>
         </Form.Group>
         <div className='mb-3'>
-          {combo.map((data, i) => {
-            return (
-              <Form.Check
-                onChange={handleComboChange}
-                key={data.id}
-                inline
-                label={data.name}
-                name={data.id}
-                type='checkbox'
-                id={`inline-checkbox-${i + 1}`}
-              />
-            );
-          })}
+          {combo &&
+            combo.map((data, i) => {
+              return (
+                <Form.Check
+                  onChange={handleComboChange}
+                  key={data.id}
+                  inline
+                  label={data.name}
+                  name={data.id}
+                  type='checkbox'
+                  id={`inline-checkbox-${i + 1}`}
+                />
+              );
+            })}
         </div>
       </div>
       <input
