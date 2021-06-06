@@ -25,6 +25,9 @@ export default function ComboAdmin({ jwt, combo }) {
       <button className='btn btn-outline-dark me-3' onClick={handleDelete}>
         Eliminar Combo
       </button>
+      {action === 'PUT' && 'this is the PUT'}
+      {action === 'POST' && 'this is the POST'}
+      {action === 'DELETE' && 'this is the PUT'}
     </div>
   );
 }

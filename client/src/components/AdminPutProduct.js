@@ -88,7 +88,7 @@ export default function AdminPutProduct({ products, jwt, combo }) {
           required
           defaultValue='default'
         >
-          <option disabled value='default'>
+          <option key={'1'} disabled value='default'>
             Elegir producto a Actualizar
           </option>
           ;
@@ -151,16 +151,14 @@ export default function AdminPutProduct({ products, jwt, combo }) {
             name='description'
           />
         </InputGroup>
-        <label htmlFor='exampleFormControlFile1'>
-          Primero hacer click en SUBIR antes que en agregar producto{' '}
-        </label>
+
         <div className='mb-3'>
           {combo &&
             combo.map((data, i) => {
               return (
                 <Form.Check
-                  onChange={handleComboChange}
                   key={data.id}
+                  onChange={handleComboChange}
                   inline
                   label={data.name}
                   name={data.id}

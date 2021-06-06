@@ -20,9 +20,8 @@ export default function Admin() {
   }, [userAdmin]);
 
   var ActualUrl = window.location.pathname;
-
   useEffect(() => {
-    if (ActualUrl === '/admin') {
+    if (ActualUrl === '/admin' && userAdmin.email) {
       axios
         .post('https://menoscaosporfavorstrapi.herokuapp.com/auth/local', {
           identifier: userAdmin.email,
@@ -90,7 +89,10 @@ export default function Admin() {
       </div>
     );
 
-  if (userAdmin.uid === 'I3dKx9Fc81ZLrPOUAAktWKd5IAi2') {
+  if (
+    userAdmin.uid === 'I3dKx9Fc81ZLrPOUAAktWKd5IAi2' ||
+    userAdmin.uid === '1W93mjqaizcxJOnQ64XsSY03mGA2'
+  ) {
     return (
       <div>
         <BackNav />
