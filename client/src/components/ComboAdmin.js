@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
-import AdminDeleteProduct from './AdminDeleteProduct';
-import AdminPostProduct from './AdminPostProduct';
-import AdminPutProduct from './AdminPutProduct';
 
-export default function ComboAdmin({}) {
+export default function ComboAdmin({ jwt, combo }) {
   const [action, setAction] = useState('PUT');
   function handleRefresh() {
     setAction('PUT');

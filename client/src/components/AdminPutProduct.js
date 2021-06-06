@@ -59,7 +59,7 @@ export default function AdminPutProduct({ products, jwt, combo }) {
   var handleSubmit = async () => {
     await axios
       .put(
-        `http://localhost:1337/products/${productsPut}`,
+        `https://menoscaosporfavorstrapi.herokuapp.com/${productsPut}`,
         {
           name: name,
           description: description,
@@ -79,7 +79,7 @@ export default function AdminPutProduct({ products, jwt, combo }) {
 
   return (
     <div className='col-12 px-5 mt-3'>
-      <h1>Actualizar Producto</h1>
+      <h1>ACTUALIZAR PRODUCTO</h1>
       <FormGroup>
         <Form.Control
           className='mb-3'

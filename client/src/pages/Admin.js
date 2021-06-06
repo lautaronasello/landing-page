@@ -24,7 +24,7 @@ export default function Admin() {
   useEffect(() => {
     if (ActualUrl === '/admin') {
       axios
-        .post('http://localhost:1337/auth/local', {
+        .post('https://menoscaosporfavorstrapi.herokuapp.com/auth/local', {
           identifier: userAdmin.email,
           password: 'ciberiano',
         })
@@ -38,9 +38,12 @@ export default function Admin() {
   useEffect(() => {
     let canceled;
     const getProducts = async () => {
-      const res = await axios.get('http://localhost:1337/products/', {
-        canceledToken: new axios.CancelToken((c) => (canceled = c)),
-      });
+      const res = await axios.get(
+        'https://menoscaosporfavorstrapi.herokuapp.com/products/',
+        {
+          canceledToken: new axios.CancelToken((c) => (canceled = c)),
+        }
+      );
       setProducts(res.data);
     };
     getProducts();
@@ -51,9 +54,12 @@ export default function Admin() {
   useEffect(() => {
     let cancel;
     const getCombos = async () => {
-      const res = await axios.get('http://localhost:1337/combos/', {
-        cancelToken: new axios.CancelToken((c) => (cancel = c)),
-      });
+      const res = await axios.get(
+        'https://menoscaosporfavorstrapi.herokuapp.com/combos/',
+        {
+          cancelToken: new axios.CancelToken((c) => (cancel = c)),
+        }
+      );
       setCombo(res.data);
     };
     getCombos();
@@ -119,7 +125,7 @@ export default function Admin() {
               products={products}
             />
           ) : (
-            <ComboAdmin combo={combo} />
+            <ComboAdmin jwt={jwt} combo={combo} />
           )}
         </div>
       </div>

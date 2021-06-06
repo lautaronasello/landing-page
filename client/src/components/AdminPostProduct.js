@@ -60,7 +60,7 @@ export default function AdminPostProduct({ combo, jwt }) {
     formData.append('files', uploadImage);
 
     await axios
-      .post('http://localhost:1337/upload', formData, {
+      .post('https://menoscaosporfavorstrapi.herokuapp.com/upload', formData, {
         headers: {
           Authorization: `Bearer ${jwt}`,
         },
@@ -77,7 +77,7 @@ export default function AdminPostProduct({ combo, jwt }) {
   var handleSubmit = async () => {
     await axios
       .post(
-        'http://localhost:1337/products/',
+        'https://menoscaosporfavorstrapi.herokuapp.com/',
         {
           name: name,
           description: description,
@@ -94,7 +94,7 @@ export default function AdminPostProduct({ combo, jwt }) {
       )
       .then((res) => {
         alert('Se subieron los datos');
-        // window.location = '/admin';
+        window.location = '/admin';
       })
       .catch((err) => {
         alert(err);

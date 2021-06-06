@@ -21,7 +21,7 @@ export default function Navigate({ products, combo, primerUser }) {
     primerUser && setUser(primerUser);
   }, [primerUser]);
   const [user, setUser] = useState('');
-
+  console.log(user);
   const handleLogout = () => {
     firebase
       .auth()

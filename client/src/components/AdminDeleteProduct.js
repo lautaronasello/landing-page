@@ -16,13 +16,16 @@ export default function AdminDeleteProduct({ products, jwt }) {
     var confirm = window.confirm(`ESTAS SEGURA DE ELMINAR ${deleteName}`);
     if (confirm) {
       await axios
-        .delete(`http://localhost:1337/products/${deleteProduct}`, {
-          headers: {
-            Authorization: `Bearer ${jwt}`,
-          },
-        })
+        .delete(
+          `https://menoscaosporfavorstrapi.herokuapp.com/products/${deleteProduct}`,
+          {
+            headers: {
+              Authorization: `Bearer ${jwt}`,
+            },
+          }
+        )
         .then((res) => {
-          alert('se elimino insta');
+          alert(`Se elimino ${deleteName}`);
           window.location = '/admin';
         })
         .catch((err) => alert(err));
@@ -33,7 +36,7 @@ export default function AdminDeleteProduct({ products, jwt }) {
 
   return (
     <div className='col-12 px-5 mt-3'>
-      <h1>Eliminar Producto</h1>
+      <h1>ELIMINAR PRODUCTO</h1>
       <FormGroup>
         <Form.Control
           className='mb-3'
