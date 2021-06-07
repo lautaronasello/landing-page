@@ -18,16 +18,18 @@ export default function ProductAdmin({ products, combo, jwt }) {
   }
 
   return (
-    <div className='col-12 pt-4 px-5 mt-3 pb-3'>
-      <button className='btn btn-outline-dark me-3' onClick={handleRefresh}>
-        Actualizar Producto
-      </button>
-      <button className='btn btn-outline-dark me-3' onClick={handleAdd}>
-        Agregar Product
-      </button>
-      <button className='btn btn-outline-dark me-3' onClick={handleDelete}>
-        Eliminar Producto
-      </button>
+    <div className='col-12 py-3'>
+      <div className='my-3'>
+        <button className='btn btn-outline-dark me-3' onClick={handleRefresh}>
+          Actualizar Producto
+        </button>
+        <button className='btn btn-outline-dark me-3' onClick={handleAdd}>
+          Agregar Product
+        </button>
+        <button className='btn btn-outline-dark me-3' onClick={handleDelete}>
+          Eliminar Producto
+        </button>
+      </div>
       {action === 'PUT' && (
         <AdminPutProduct combo={combo} jwt={jwt} products={products} />
       )}

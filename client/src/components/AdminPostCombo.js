@@ -2,15 +2,14 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { InputGroup, FormControl, Form } from 'react-bootstrap';
 
-export default function AdminPostProduct({ combo, jwt }) {
-  const [name, setName] = useState('Ultimo producto');
+export default function AdminPostCombo({ products, jwt }) {
+  const [name, setName] = useState('Ultimo Combo');
   const [description, setDescription] = useState(
-    'Producto nuevo de menos caos por favor'
+    'Combo nuevo de menos caos por favor'
   );
   const [price, setPrice] = useState();
-  const [stock, setStock] = useState();
   const [uploadImage, setUploadImage] = useState();
-  const [productImage, setProductImage] = useState();
+  const [comboImage, setComboImage] = useState();
 
   function handleNameChange(e) {
     let value = e.target.value;
@@ -32,22 +31,17 @@ export default function AdminPostProduct({ combo, jwt }) {
     i !== -1 && arr.splice(i, 1);
   };
 
-  let selectCombo = [];
+  let selectProduct = [];
 
-  function handleComboChange(e) {
+  function handleProductChange(e) {
     var checked = e.target.checked;
     let value = e.target.name;
     if (checked) {
-      selectCombo.push(value);
+      selectProduct.push(value);
     } else {
-      removeItemFromArr(selectCombo, value);
+      removeItemFromArr(selectProduct, value);
     }
-    console.log(selectCombo, 'checked: ', checked, ', value: ', value);
-  }
-
-  function handleStockChange(e) {
-    let value = e.target.value;
-    setStock(value);
+    console.log(selectProduct, 'checked: ', checked, ', value: ', value);
   }
 
   function handleImgChange(e) {
@@ -66,8 +60,8 @@ export default function AdminPostProduct({ combo, jwt }) {
         },
       })
       .then((res) => {
-        alert('La imagen se subio bien, ahora podes subir el producto :)');
-        setProductImage(res.data[0].id);
+        alert('La imagen se subio bien, ahora podes subir el combo :)');
+        setComboImage(res.data[0].id);
       })
       .catch((err) => {
         console.log(err);
@@ -77,14 +71,13 @@ export default function AdminPostProduct({ combo, jwt }) {
   var handleSubmit = async () => {
     await axios
       .post(
-        'https://menoscaosporfavorstrapi.herokuapp.com/products',
+        'https://menoscaosporfavorstrapi.herokuapp.com/combos',
         {
           name: name,
           description: description,
           price: price,
-          stock: stock,
-          combos: selectCombo,
-          image: productImage,
+          products: selectProduct,
+          image: comboImage,
         },
         {
           headers: {
@@ -103,7 +96,7 @@ export default function AdminPostProduct({ combo, jwt }) {
 
   return (
     <div className='col-12 px-5 my-3'>
-      <h1>AGREGAR PRODUCTO NUEVO</h1>
+      <h1>AGREGAR COMBO NUEVO</h1>
       <div className='text-left'>
         <InputGroup className='mb-3'>
           <InputGroup.Prepend>
@@ -115,17 +108,6 @@ export default function AdminPostProduct({ combo, jwt }) {
             aria-describedby='basic-addon1'
             name='name'
             onChange={handleNameChange}
-          />
-        </InputGroup>
-
-        <InputGroup className='mb-3'>
-          <InputGroup.Prepend>
-            <InputGroup.Text>Stock</InputGroup.Text>
-          </InputGroup.Prepend>
-          <FormControl
-            aria-label='Amount (to the nearest dollar)'
-            onChange={handleStockChange}
-            name='stock'
           />
         </InputGroup>
 
@@ -152,7 +134,7 @@ export default function AdminPostProduct({ combo, jwt }) {
           />
         </InputGroup>
         <label htmlFor='exampleFormControlFile1'>
-          Primero hacer click en SUBIR antes que en agregar producto{' '}
+          Primero hacer click en SUBIR antes que en agregar combo{' '}
         </label>
         <Form.Group className='text-left'>
           <Form.File
@@ -168,11 +150,11 @@ export default function AdminPostProduct({ combo, jwt }) {
           </button>
         </Form.Group>
         <div className='mb-3'>
-          {combo &&
-            combo.map((data, i) => {
+          {products &&
+            products.map((data, i) => {
               return (
                 <Form.Check
-                  onChange={handleComboChange}
+                  onChange={handleProductChange}
                   key={data.id}
                   inline
                   label={data.name}
@@ -186,7 +168,7 @@ export default function AdminPostProduct({ combo, jwt }) {
       </div>
       <input
         type='reset'
-        value='Agregar Producto'
+        value='Agregar combo'
         className='btn btn-outline-dark mt-3'
         onClick={handleSubmit}
       />
