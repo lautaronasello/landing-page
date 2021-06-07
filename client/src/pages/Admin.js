@@ -22,13 +22,17 @@ export default function Admin() {
   var ActualUrl = window.location.pathname;
   useEffect(() => {
     if (ActualUrl === '/admin' && userAdmin.email) {
-      axios
-        .post('https://menoscaosporfavorstrapi.herokuapp.com/auth/local', {
-          identifier: userAdmin.email,
-          password: 'ciberiano',
-        })
-        .then((res) => res.data && setJwt(res.data.jwt))
-        .catch((err) => console.log(err));
+      async function fetchData() {
+        const res = await axios.post(
+          'https://menoscaosporfavorstrapi.herokuapp.com/auth/local',
+          {
+            identifier: userAdmin.email,
+            password: 'ciberiano',
+          }
+        );
+        setJwt(res.data.jwt);
+      }
+      fetchData();
     }
   }, [ActualUrl, userAdmin]);
 
@@ -127,7 +131,12 @@ export default function Admin() {
               products={products}
             />
           ) : (
-            <ComboAdmin jwt={jwt} combo={combo} />
+            <ComboAdmin
+              jwt={jwt}
+              userAdmin={userAdmin}
+              products={products}
+              combo={combo}
+            />
           )}
         </div>
       </div>

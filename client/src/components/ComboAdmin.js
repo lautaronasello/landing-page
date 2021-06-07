@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import AdminDeleteCombos from './AdminDeleteCombo';
+import AdminPostCombo from './AdminPostCombo';
+import AdminPutCombo from './AdminPutCombo';
 
-export default function ComboAdmin({ jwt, combo }) {
+export default function ComboAdmin({ jwt, combo, products }) {
   const [action, setAction] = useState('PUT');
   function handleRefresh() {
     setAction('PUT');
@@ -15,19 +18,24 @@ export default function ComboAdmin({ jwt, combo }) {
   }
 
   return (
-    <div className='col-12 pt-4'>
-      <button className='btn btn-outline-dark me-3' onClick={handleRefresh}>
-        Actualizar Combo
-      </button>
-      <button className='btn btn-outline-dark me-3' onClick={handleAdd}>
-        Agregar Combo
-      </button>
-      <button className='btn btn-outline-dark me-3' onClick={handleDelete}>
-        Eliminar Combo
-      </button>
-      {action === 'PUT' && 'this is the PUT'}
-      {action === 'POST' && 'this is the POST'}
-      {action === 'DELETE' && 'this is the PUT'}
+    <div className='col-12 py-3'>
+      <div className='my-3'>
+        <button className='btn btn-outline-dark me-3' onClick={handleRefresh}>
+          Actualizar Combo
+        </button>
+        <button className='btn btn-outline-dark me-3' onClick={handleAdd}>
+          Agregar Combo
+        </button>
+        <button className='btn btn-outline-dark me-3' onClick={handleDelete}>
+          Eliminar Combo
+        </button>
+      </div>
+
+      {action === 'PUT' && (
+        <AdminPutCombo combo={combo} products={products} jwt={jwt} />
+      )}
+      {action === 'POST' && <AdminPostCombo products={products} jwt={jwt} />}
+      {action === 'DELETE' && <AdminDeleteCombos combo={combo} jwt={jwt} />}
     </div>
   );
 }

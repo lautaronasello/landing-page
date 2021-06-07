@@ -2,26 +2,26 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { FormGroup, Form, FormControl, InputGroup } from 'react-bootstrap';
 
-export default function AdminPutProduct({ products, jwt, combo }) {
-  const [productsPut, setProductsPut] = useState();
+export default function AdminPutCombo({ products, jwt, combo }) {
+  const [comboPut, setComboPut] = useState();
   const [price, setPrice] = useState();
-  const [stock, setStock] = useState();
   const [name, setName] = useState('Ultimo producto');
   const [description, setDescription] = useState(
     'Producto nuevo de menos caos por favor'
   );
   const [updatedName, setUpdatedName] = useState();
 
-  let selectCombo = [];
+  let selectProduct = [];
 
-  function handleComboChange(e) {
+  function handleProductChange(e) {
     var checked = e.target.checked;
-    let value = parseInt(e.target.name);
+    let value = e.target.name;
     if (checked) {
-      selectCombo.push(parseInt(value));
+      selectProduct.push(value);
     } else {
-      removeItemFromArr(selectCombo, value);
+      removeItemFromArr(selectProduct, value);
     }
+    console.log(selectProduct, 'checked: ', checked, ', value: ', value);
   }
 
   var removeItemFromArr = (arr, item) => {
@@ -29,10 +29,6 @@ export default function AdminPutProduct({ products, jwt, combo }) {
     i !== -1 && arr.splice(i, 1);
   };
 
-  function handleStockChange(e) {
-    let value = e.target.value;
-    setStock(value);
-  }
   function handleNameChange(e) {
     let value = e.target.value;
     setName(value);
@@ -50,22 +46,19 @@ export default function AdminPutProduct({ products, jwt, combo }) {
 
   function handleChange(e) {
     let value = e.target.value;
-    setProductsPut(value);
+    setComboPut(value);
     setUpdatedName(e.target.selectedOptions[0].id);
-
-    console.log('este es el producto a actualizar: ' + productsPut);
   }
 
   var handleSubmit = async () => {
     await axios
       .put(
-        `https://menoscaosporfavorstrapi.herokuapp.com/products/${productsPut}`,
+        `https://menoscaosporfavorstrapi.herokuapp.com/combos/${comboPut}`,
         {
           name: name,
           description: description,
           price: price,
-          stock: stock,
-          combos: selectCombo,
+          products: selectProduct,
         },
         {
           headers: {
@@ -73,13 +66,16 @@ export default function AdminPutProduct({ products, jwt, combo }) {
           },
         }
       )
-      .then((res) => alert(`${updatedName} se actualizo con exito!`))
-      .catch((err) => alert('hubo un problema actualizando el producto'));
+      .then(
+        (res) => alert(`${updatedName} se actualizo con exito!`),
+        (window.location = '/admin')
+      )
+      .catch((err) => alert('hubo un problema actualizando el combo' + err));
   };
 
   return (
-    <div className='col-12 px-5 mt-3'>
-      <h1>ACTUALIZAR PRODUCTO</h1>
+    <div className='col-12 px-5 my-3'>
+      <h1>ACTUALIZAR COMBO</h1>
       <FormGroup>
         <Form.Control
           className='mb-3'
@@ -89,11 +85,11 @@ export default function AdminPutProduct({ products, jwt, combo }) {
           defaultValue='default'
         >
           <option key={1} disabled value='default'>
-            Elegir producto a Actualizar
+            Elegir combo a Actualizar
           </option>
           ;
-          {products &&
-            products.map((data) => {
+          {combo &&
+            combo.map((data) => {
               return (
                 <>
                   <option key={data.id} id={data.name} value={data.id}>
@@ -115,17 +111,6 @@ export default function AdminPutProduct({ products, jwt, combo }) {
             aria-describedby='basic-addon1'
             name='name'
             onChange={handleNameChange}
-          />
-        </InputGroup>
-
-        <InputGroup className='mb-3'>
-          <InputGroup.Prepend>
-            <InputGroup.Text>Stock</InputGroup.Text>
-          </InputGroup.Prepend>
-          <FormControl
-            aria-label='Amount (to the nearest dollar)'
-            onChange={handleStockChange}
-            name='stock'
           />
         </InputGroup>
 
@@ -153,12 +138,12 @@ export default function AdminPutProduct({ products, jwt, combo }) {
         </InputGroup>
 
         <div className='mb-3'>
-          {combo &&
-            combo.map((data, i) => {
+          {products &&
+            products.map((data, i) => {
               return (
                 <Form.Check
                   key={data.id}
-                  onChange={handleComboChange}
+                  onChange={handleProductChange}
                   inline
                   label={data.name}
                   name={data.id}
@@ -181,7 +166,7 @@ export default function AdminPutProduct({ products, jwt, combo }) {
         lo contrario se borrrarán los datos que no se completen. Es decir, en el
         caso de querer actualizar el nombre solamente, se escribirá en la
         casilla de "nombre" el nuevo nombre y en las demas casillas se escribirá
-        la misma informacion que posee en el momento.
+        la misma informacion que posee en el momento
       </p>
     </div>
   );

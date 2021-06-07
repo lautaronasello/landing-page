@@ -21,6 +21,14 @@ export default function Navigate({ products, combo, primerUser }) {
     primerUser && setUser(primerUser);
   }, [primerUser]);
   const [user, setUser] = useState('');
+
+  console.log(user);
+
+  var userToken =
+    'I3dKx9Fc81ZLrPOUAAktWKd5IAi2' ||
+    '1W93mjqaizcxJOnQ64XsSY03mGA2' ||
+    'vnoRWIJmeXPCTTeaTUSqxeDxmZw1';
+
   const handleLogout = () => {
     firebase
       .auth()
@@ -50,14 +58,27 @@ export default function Navigate({ products, combo, primerUser }) {
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
       <Navbar.Collapse id='basic-navbar-nav'>
         <Nav className='mr-auto ml-4'>
-          {user.uid === 'I3dKx9Fc81ZLrPOUAAktWKd5IAi2' ||
-            (user.uid === '1W93mjqaizcxJOnQ64XsSY03mGA2' && (
-              <div className='nav-link'>
-                <a href='/admin' className=' hand'>
-                  ADMIN
-                </a>
-              </div>
-            ))}
+          {user.uid === 'I3dKx9Fc81ZLrPOUAAktWKd5IAi2' && (
+            <div className='nav-link'>
+              <a href='/admin' className=' hand'>
+                ADMIN
+              </a>
+            </div>
+          )}
+          {user.uid === 'vnoRWIJmeXPCTTeaTUSqxeDxmZw1' && (
+            <div className='nav-link'>
+              <a href='/admin' className=' hand'>
+                ADMIN
+              </a>
+            </div>
+          )}
+          {user.uid === '1W93mjqaizcxJOnQ64XsSY03mGA2' && (
+            <div className='nav-link'>
+              <a href='/admin' className=' hand'>
+                ADMIN
+              </a>
+            </div>
+          )}
           <div className='nav-link'>
             <Link
               className='hand'
