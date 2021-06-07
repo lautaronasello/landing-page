@@ -6,14 +6,10 @@ import firebase from 'firebase/app';
 
 export default function Checkout() {
   const [database, setDatabase] = useState('data');
-  const [datos, setDatos] = useState([
-    {
-      name: 'Nombre y Apellido',
-      email: 'example@mail.com',
-      instagram: '@tuinstagram',
-      phone: '(Codigo de área)Número de teléfono',
-    },
-  ]);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [instagram, setInstagram] = useState('');
+  const [phone, setPhone] = useState('');
 
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -34,14 +30,24 @@ export default function Checkout() {
 
   const [cart, setCart] = useState([]);
 
-  function handleInputChange(e) {
-    const target = e.target;
-    const value = target.value;
-    const name = target.name;
+  function handleNameChange(e) {
+    let value = e.target.value;
+    setName(value);
+  }
 
-    setDatos({
-      [name]: value,
-    });
+  function handleEmailChange(e) {
+    let value = e.target.value;
+    setEmail(value);
+  }
+
+  function handleInstagramChange(e) {
+    let value = e.target.value;
+    setInstagram(value);
+  }
+
+  function handlePhoneChange(e) {
+    let value = e.target.value;
+    setPhone(value);
   }
 
   const [subTotal, setSubTotal] = useState();
@@ -56,7 +62,6 @@ export default function Checkout() {
     setNameBuyProds(xname);
     setSubTotal(x.toString());
   }, [cart]);
-  console.log(nameBuyProds);
 
   function handleShipping(e) {
     setShipping(e.target.value);
@@ -92,10 +97,13 @@ export default function Checkout() {
       <BackNav />
       <div
         className='justify-content-center align-items-center d-flex mt-5'
-        style={{ minHeight: '90vh' }}
+        style={{ minHeight: '80vh' }}
       >
         <div className='container'>
-          <form action='http://localhost:3001/checkout' method='POST'>
+          <form
+            action='http://menoscaosporfavorbackend.herokuapp.com/checkout'
+            method='POST'
+          >
             <div className='row'>
               <div className='col-md-4 col-sm-12 my-3'>
                 <div className='card p-3'>
@@ -110,7 +118,7 @@ export default function Checkout() {
                       name='shipping'
                       required
                     >
-                      <option selected disabled value=''>
+                      <option defaultValue disabled value='nada'>
                         Elegir forma de entrega/retiro
                       </option>
                       <option value='nueva cordoba'>
@@ -139,12 +147,12 @@ export default function Checkout() {
                   <input
                     type='text'
                     name='name'
-                    value={datos.name}
                     placeholder='Nombre y Apellido'
                     required
                     id='name'
                     className='form-control'
-                    onChange={handleInputChange}
+                    onChange={handleNameChange}
+                    value={name}
                   />
                   <label htmlFor='email' className='form-label my-2'>
                     Email para enviarte la informacion de Compra, entrega y
@@ -153,12 +161,12 @@ export default function Checkout() {
                   <input
                     type='email'
                     name='email'
-                    value={datos.email}
                     placeholder='example@mail.com'
                     required
                     id='email'
                     className='form-control'
-                    onChange={handleInputChange}
+                    onChange={handleEmailChange}
+                    value={email}
                   />
                   <label htmlFor='instagram' className='form-label my-2'>
                     Dejanos tu instagram!
@@ -166,11 +174,11 @@ export default function Checkout() {
                   <input
                     type='text'
                     name='instagram'
-                    value={datos.instagram}
                     placeholder='@tuinstagram'
                     id='instagram'
                     className='form-control'
-                    onChange={handleInputChange}
+                    onChange={handleInstagramChange}
+                    value={instagram}
                   />
                   <label htmlFor='phone' className='form-label my-2'>
                     Tel./Whatsapp *
@@ -178,25 +186,26 @@ export default function Checkout() {
                   <input
                     type='tel'
                     name='phone'
-                    value={datos.phone}
-                    placeholder='(Codigo de área)Numero de teléfono'
+                    placeholder='(Codigo de área) Número de teléfono'
                     id='phone'
                     className='form-control'
                     required
-                    onChange={handleInputChange}
+                    onChange={handlePhoneChange}
+                    value={phone}
                   />{' '}
                   <label className='form-label my-2'>
                     Opciones de Pago{' '}
                     <select
-                      value={payment}
                       onChange={handlePayment}
                       className='form-select'
                       aria-label='Default select example'
                       id='payment'
                       name='payment'
                       required
+                      defaultValue='nada'
+                      value={payment}
                     >
-                      <option selected disabled value=''>
+                      <option disabled value='nada'>
                         Elegir forma de pago
                       </option>
                       <option value='efectivo entrega'>

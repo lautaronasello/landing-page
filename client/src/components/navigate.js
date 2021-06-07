@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-scroll';
 import firebase from 'firebase/app';
@@ -6,17 +6,9 @@ import 'firebase/auth';
 import 'firebase/storage';
 import LoginButton from './LoginButton';
 import { LogoutButton } from './LogoutButton';
-import ShoppingCart from './ShoppingCart';
 import CartButton from './CartButton';
 
-export default function Navigate({ products, combo }) {
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      setUser(user);
-    }
-  });
-
-  const [user, setUser] = useState();
+export default function Navigate({ products, combo, primerUser }) {
   const handleAuth = () => {
     let provider = new firebase.auth.GoogleAuthProvider();
     firebase
@@ -25,7 +17,10 @@ export default function Navigate({ products, combo }) {
       .then((result) => {})
       .catch((error) => console.log(error.code));
   };
-
+  useEffect(() => {
+    primerUser && setUser(primerUser);
+  }, [primerUser]);
+  const [user, setUser] = useState('');
   const handleLogout = () => {
     firebase
       .auth()
@@ -41,9 +36,6 @@ export default function Navigate({ products, combo }) {
       className='bg-nav shadow bg-gradient fixed-top'
       style={{ background: '#ecd3c0' }}
     >
-      {/* <Navbar.Brand href='#inicio' className='ml-2 hand pt-3 my-0'> */}
-      {/* <h4 className='font-size'>menos caos por favor</h4>{' '}
-      </Navbar.Brand> */}
       <Link
         className='ml-2 hand pt-2 my-auto'
         activeClass='active'
@@ -58,6 +50,14 @@ export default function Navigate({ products, combo }) {
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
       <Navbar.Collapse id='basic-navbar-nav'>
         <Nav className='mr-auto ml-4'>
+          {user.uid === 'I3dKx9Fc81ZLrPOUAAktWKd5IAi2' ||
+            (user.uid === '1W93mjqaizcxJOnQ64XsSY03mGA2' && (
+              <div className='nav-link'>
+                <a href='/admin' className=' hand'>
+                  ADMIN
+                </a>
+              </div>
+            ))}
           <div className='nav-link'>
             <Link
               className='hand'
