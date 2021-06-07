@@ -58,7 +58,21 @@ export default function Navigate({ products, combo, primerUser }) {
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
       <Navbar.Collapse id='basic-navbar-nav'>
         <Nav className='mr-auto ml-4'>
-          {user.uid === userToken && (
+          {user.uid === 'I3dKx9Fc81ZLrPOUAAktWKd5IAi2' && (
+            <div className='nav-link'>
+              <a href='/admin' className=' hand'>
+                ADMIN
+              </a>
+            </div>
+          )}
+          {user.uid === 'vnoRWIJmeXPCTTeaTUSqxeDxmZw1' && (
+            <div className='nav-link'>
+              <a href='/admin' className=' hand'>
+                ADMIN
+              </a>
+            </div>
+          )}
+          {user.uid === '1W93mjqaizcxJOnQ64XsSY03mGA2' && (
             <div className='nav-link'>
               <a href='/admin' className=' hand'>
                 ADMIN
