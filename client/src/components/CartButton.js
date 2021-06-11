@@ -8,7 +8,7 @@ export default function CartButton({ products, combo }) {
   return (
     <DropdownButton
       variant='light'
-      className='py-1 ms-3'
+      className='py-2 ms-3 transition'
       menuAlign='right'
       title={
         <FontAwesomeIcon
@@ -19,9 +19,7 @@ export default function CartButton({ products, combo }) {
       }
       id='dropdown-menu-align-responsive-2'
     >
-      <div style={{ minWidth: '600px' }}>
-        <ShoppingCart products={products} combo={combo} />
-      </div>
+      <ShoppingCart products={products} combo={combo} />
     </DropdownButton>
   );
 }

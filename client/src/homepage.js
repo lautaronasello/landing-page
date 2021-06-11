@@ -15,13 +15,12 @@ import SectionProducts from './components/SectionProducts';
 import Navigate from './components/navigate';
 import firebase from 'firebase/app';
 export default function HomePage() {
+  const [primerUser, setPrimerUser] = useState();
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       setPrimerUser(user);
     }
   });
-
-  const [primerUser, setPrimerUser] = useState();
 
   const style = {
     backgroundColor: '#fff',
@@ -64,7 +63,7 @@ export default function HomePage() {
   return (
     <Fragment>
       <Navigate primerUser={primerUser} products={products} combo={combo} />
-      <Container className='text-center mt-5 pt-4 back '>
+      <Container className='text-center back '>
         <Row>
           <Col>
             <h3 id='inicio' className='my-5'>

@@ -11,7 +11,7 @@ export default function AdminDeleteProduct({ products, jwt }) {
     setDeleteName(e.target.selectedOptions[0].id);
     console.log(e);
   }
-
+  console.log(jwt);
   var handleSubmit = async () => {
     var confirm = window.confirm(`ESTAS SEGURA DE ELMINAR ${deleteName}`);
     if (confirm) {

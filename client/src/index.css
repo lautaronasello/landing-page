@@ -42,6 +42,15 @@ html {
   color: #212121;
 }
 
+.handSell {
+  cursor: pointer;
+}
+
+.handSell:hover {
+  cursor: pointer;
+  border: 0.5px solid #212121;
+}
+
 .card-img-top {
   width: 100% !important;
   height: 19rem !important;
@@ -158,4 +167,11 @@ p {
   -webkit-transform-origin: center left;
   transform-origin: center left;
   white-space: normal !important;
+}
+
+.transition {
+  -webkit-transform-origin: center left;
+  transform-origin: center left;
+  -webkit-transition: all 0.45s;
+  transition: all 0.45s;
 }

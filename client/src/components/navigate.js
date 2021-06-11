@@ -22,13 +22,6 @@ export default function Navigate({ products, combo, primerUser }) {
   }, [primerUser]);
   const [user, setUser] = useState('');
 
-  console.log(user);
-
-  var userToken =
-    'I3dKx9Fc81ZLrPOUAAktWKd5IAi2' ||
-    '1W93mjqaizcxJOnQ64XsSY03mGA2' ||
-    'vnoRWIJmeXPCTTeaTUSqxeDxmZw1';
-
   const handleLogout = () => {
     firebase
       .auth()
@@ -41,7 +34,7 @@ export default function Navigate({ products, combo, primerUser }) {
   return (
     <Navbar
       expand='lg'
-      className='bg-nav shadow bg-gradient fixed-top'
+      className='bg-nav shadow bg-gradient'
       style={{ background: '#ecd3c0' }}
     >
       <Link

@@ -33,9 +33,7 @@ export default function CardSell({
           price: `${price}`,
           qty: 1,
         })
-        .then(() => {
-          console.log('se subio bien');
-        })
+        .then(() => {})
         .catch((e) => {
           console.error('error: ', e);
         });
@@ -45,26 +43,19 @@ export default function CardSell({
       );
     }
   };
-
   return (
-    <div className='mt-4 me-4 ms-1 carousel-item1  rounded-0 ' style={style}>
+    <div
+      className={`mt-4 me-4 ms-1 carousel-item1  rounded-0 text-center ${(stock =
+        !0 && 'handSell')} `}
+      style={style}
+      onClick={(stock = !0 && addToCart)}
+    >
       <Img img={imgtest} alt='alt raro' />
       <div className={classNameH5Div} style={minHeightStyle}>
         <h5>{nameCombo}</h5>
-        <div>{prods}</div>
+        <div className='text-left'>{prods}</div>
       </div>
-      <div className=' row px-3'>
-        {stock === 0 ? (
-          <button className='btn btn-primary disabled'>AR${price}</button>
-        ) : (
-          <button
-            className='btn btn-primary shadow'
-            onClick={() => addToCart()}
-          >
-            AR${price}
-          </button>
-        )}
-      </div>
+      <div className=' row px-3'></div>
     </div>
   );
 }
