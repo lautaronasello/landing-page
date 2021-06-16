@@ -4,10 +4,7 @@ export default function Img(props) {
   const { img, alt } = props;
 
   return (
-    <div
-      className='text-center p-3 d-inline-block'
-      style={{ backgroundColor: '#ecd3c0' }}
-    >
+    <div className='text-center d-inline-block'>
       <img src={img} className='img-fluid' alt={alt} />
     </div>
   );

@@ -1,39 +1,40 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Img from './img';
-import imgtest from './products-img/prod-apilados.jpeg';
 import { db } from '../index';
 import firebase from 'firebase/app';
+import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 export default function CardSell({
-  nameCombo,
+  name,
   prods,
   price,
   style,
-  stock,
   id,
+  image,
+  description,
   minHeightStyle,
   classNameH5Div,
 }) {
-  useEffect(() => {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        setUser(user);
-      }
-    });
-  }, []);
+  const [openModal, setOpenModal] = useState(false);
+
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      setUser(user);
+    }
+  });
   const [user, setUser] = useState();
 
   const addToCart = () => {
     if (user) {
       db.collection(user.email)
-        .doc(`${nameCombo}`)
+        .doc(`${name}`)
         .set({
           id: `${id}`,
-          name: `${nameCombo}`,
+          name: `${name}`,
           price: `${price}`,
           qty: 1,
         })
-        .then(() => {})
+        .then(() => setOpenModal(false))
         .catch((e) => {
           console.error('error: ', e);
         });
@@ -44,18 +45,44 @@ export default function CardSell({
     }
   };
   return (
-    <div
-      className={`mt-4 me-4 ms-1 carousel-item1  rounded-0 text-center ${(stock =
-        !0 && 'handSell')} `}
-      style={style}
-      onClick={(stock = !0 && addToCart)}
-    >
-      <Img img={imgtest} alt='alt raro' />
-      <div className={classNameH5Div} style={minHeightStyle}>
-        <h5>{nameCombo}</h5>
-        <div className='text-left'>{prods}</div>
+    <>
+      <Modal isOpen={openModal}>
+        <ModalHeader>{name}</ModalHeader>
+        <ModalBody>
+          <div className='row'>
+            <div className='col-6'>
+              <img src={image} alt={name} />
+            </div>
+            <div className='col-6 align-items-center justify-content-center d-flex'>
+              {description}
+            </div>
+          </div>
+        </ModalBody>
+        <ModalFooter>
+          <button
+            className='btn btn-danger'
+            onClick={() => setOpenModal(false)}
+          >
+            Cerrar
+          </button>
+          <button className='btn btn-success' onClick={addToCart}>
+            Agregar al Carrito
+          </button>
+        </ModalFooter>
+      </Modal>{' '}
+      <div
+        // className='mt-4 me-4 ms-1 pt-3 carousel-item1'
+        className='mt-4 me-4 ms-1 pt-3 carousel-item1 shadow rounded text-center handSell '
+        style={style}
+        onClick={() => setOpenModal(true)}
+      >
+        <Img img={image} alt={name} />
+        <div className={classNameH5Div} style={minHeightStyle}>
+          <h5>{name}</h5>
+          <div className='text-left prods'>{prods}</div>
+        </div>
+        <div className=' row px-3'></div>
       </div>
-      <div className=' row px-3'></div>
-    </div>
+    </>
   );
 }
