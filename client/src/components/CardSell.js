@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Img from './img';
 import { db } from '../index';
 import firebase from 'firebase/app';
@@ -12,17 +12,29 @@ export default function CardSell({
   id,
   image,
   description,
-  minHeightStyle,
   classNameH5Div,
 }) {
   const [openModal, setOpenModal] = useState(false);
-
+  const [isShown, setIsShown] = useState(false);
+  const toggle = () => setOpenModal(!openModal);
+  var products = document.getElementById('handSell');
+  if (products) {
+    products.classList.toggle('show');
+  }
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       setUser(user);
     }
   });
   const [user, setUser] = useState();
+
+  var actualWidth = window.screen.width;
+
+  useEffect(() => {
+    if (actualWidth < 1000) {
+      setIsShown(true);
+    }
+  }, [actualWidth]);
 
   const addToCart = () => {
     if (user) {
@@ -44,44 +56,51 @@ export default function CardSell({
       );
     }
   };
+
   return (
     <>
-      <Modal isOpen={openModal}>
-        <ModalHeader>{name}</ModalHeader>
+      <Modal isOpen={openModal} toggle={toggle}>
+        <ModalHeader toggle={toggle}>
+          <div className='fs-3'>{name}</div>
+        </ModalHeader>
         <ModalBody>
           <div className='row'>
-            <div className='col-6'>
+            <div className='col-md-6 text-center'>
               <img src={image} alt={name} />
             </div>
-            <div className='col-6 align-items-center justify-content-center d-flex'>
-              {description}
+            <div className='col-md-6 align-items-center justify-content-center d-flex'>
+              <div>
+                <p className='text-body fs-4'>ARS${price}</p>
+                {description}
+              </div>
             </div>
           </div>
         </ModalBody>
         <ModalFooter>
-          <button
-            className='btn btn-danger'
-            onClick={() => setOpenModal(false)}
-          >
-            Cerrar
-          </button>
           <button className='btn btn-success' onClick={addToCart}>
             Agregar al Carrito
           </button>
         </ModalFooter>
       </Modal>{' '}
       <div
-        // className='mt-4 me-4 ms-1 pt-3 carousel-item1'
-        className='mt-4 me-4 ms-1 pt-3 carousel-item1 shadow rounded text-center handSell '
+        onMouseEnter={() => setIsShown(true)}
+        onMouseLeave={() => setIsShown(false)}
+        className='my-3 p-3 rounded text-center d-inline-block shadow handSell transition'
+        id='handSell'
         style={style}
         onClick={() => setOpenModal(true)}
       >
         <Img img={image} alt={name} />
-        <div className={classNameH5Div} style={minHeightStyle}>
+        <div className={classNameH5Div}>
           <h5>{name}</h5>
-          <div className='text-left prods'>{prods}</div>
+          <p className='fs-6 text-body fw-bold'>ARS${price}</p>
+          {isShown && (
+            <div className='text-left' id='prods'>
+              {prods}
+            </div>
+          )}
         </div>
-        <div className=' row px-3'></div>
+        <div className='row px-3'></div>
       </div>
     </>
   );

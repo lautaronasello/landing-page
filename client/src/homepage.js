@@ -33,7 +33,7 @@ export default function HomePage() {
   useEffect(() => {
     let cancel;
     const getCombos = async () => {
-      const res = await axios.get('http://localhost:1337/combos/', {
+      const res = await axios.get('http://localhost:1337/combos', {
         cancelToken: new axios.CancelToken((c) => (cancel = c)),
       });
       setCombo(res.data);
@@ -127,13 +127,13 @@ export default function HomePage() {
           <Row>
             <Col>
               <InfoCard
-                title='Combos!'
+                title='Productos'
                 style={style}
-                subtitle='Tenes distintos combos para aprovechar el orden para ver si lo tenemos en stock! Coordinamos el envío o el retiro de los productos!'
+                subtitle='Productos productos productos productos etc etc etc'
               />
             </Col>
-            <SectionCombo combo={combo} />
           </Row>
+          <SectionProducts products={products} />
           <Row>
             <Col md={12} className=' my-5'>
               <hr className='m-auto' style={{ color: '#212121' }} id='who' />
@@ -142,15 +142,18 @@ export default function HomePage() {
           <Row>
             <Col>
               <InfoCard
-                title='Productos'
+                title='Combos!'
                 style={style}
-                subtitle='Productos productos productos productos etc etc etc'
+                subtitle='Tenes distintos combos para aprovechar el orden para ver si lo tenemos en stock! Coordinamos el envío o el retiro de los productos!'
               />
             </Col>
-            {/* <SectionProducts products={products} /> */}
           </Row>
+
+          <SectionCombo combo={combo} />
+        </Container>
+        <Container className='justify-content-center aling-items-center'>
           <Row>
-            <Col md={12} className='my-5'>
+            <Col md={12} className='mb-5'>
               <hr className='mx-auto' style={{ color: '#212121' }} id='learn' />
             </Col>
           </Row>
