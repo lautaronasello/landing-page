@@ -5,13 +5,16 @@ export default function BackNav() {
   return (
     <Navbar
       expand='lg'
-      className='bg-nav shadow bg-gradient align-items-center d-flex'
+      className='bg-nav shadow bg-gradient'
       style={{ background: '#ecd3c0' }}
     >
-      <Navbar.Brand className='mx-5 text-decoration-underline' href='/homepage'>
-        Volver
+      <Navbar.Brand
+        className='mx-5  text-decoration-underline'
+        href='/homepage'
+      >
+        <p className='text-dark m'>Volver</p>
       </Navbar.Brand>
-      <h5 className='align-items-center'>Menos caos por favor</h5>
+      <h3 className='align-items-center mt-1'>Menos caos por favor</h3>
     </Navbar>
   );
 }

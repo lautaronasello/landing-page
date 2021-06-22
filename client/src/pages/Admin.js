@@ -95,7 +95,8 @@ export default function Admin() {
 
   if (
     userAdmin.uid === 'I3dKx9Fc81ZLrPOUAAktWKd5IAi2' ||
-    userAdmin.uid === '1W93mjqaizcxJOnQ64XsSY03mGA2'
+    userAdmin.uid === '1W93mjqaizcxJOnQ64XsSY03mGA2' ||
+    userAdmin.uid === 'vnoRWIJmeXPCTTeaTUSqxeDxmZw1'
   ) {
     return (
       <div>

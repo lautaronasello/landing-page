@@ -42,6 +42,15 @@ html {
   color: #212121;
 }
 
+.handSell {
+  cursor: pointer;
+}
+
+.handSell:hover {
+  cursor: pointer;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5) !important;
+}
+
 .card-img-top {
   width: 100% !important;
   height: 19rem !important;
@@ -158,4 +167,31 @@ p {
   -webkit-transform-origin: center left;
   transform-origin: center left;
   white-space: normal !important;
+}
+
+.transition {
+  -webkit-transform-origin: center left;
+  transform-origin: center left;
+  -webkit-transition: all 0.45s;
+  transition: all 0.45s;
+}
+
+.cGKbZh:hover:enabled,
+.cGKbZh:focus:enabled {
+  color: #fff;
+  background-color: #ecd3c0 !important;
+  box-shadow: 0 0 2px 0 #333;
+}
+
+.ejXxNI {
+  background-color: #ecd3c0 !important;
+  box-shadow: 0 0 1px 3px #ecd3c0 !important;
+}
+
+.jCKguF {
+  height: 500px !important;
+}
+
+.heightProducts {
+  max-height: 350px !important;
 }

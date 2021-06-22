@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import BackNav from '../components/back-nav';
 import ShoppingCart from '../components/ShoppingCart';
 import { db } from '../index';
 import firebase from 'firebase/app';
+import { Link } from 'react-router-dom';
 
 export default function Checkout() {
   const [database, setDatabase] = useState('data');
@@ -51,14 +51,15 @@ export default function Checkout() {
   }
 
   const [subTotal, setSubTotal] = useState();
-  const [nameBuyProds, setNameBuyProds] = useState([]);
+  const [nameBuyProds, setNameBuyProds] = useState('');
+
   useEffect(() => {
-    var x = 0;
     var xname = '';
-    cart.map((i) => {
-      x += i.price * i.qty;
-      xname += i.qty + ' ' + i.name + '; ';
-    });
+    var x = 0;
+    for (let i = 0; i < cart.length; i++) {
+      x += cart[i].price * cart[i].qty;
+      xname += cart[i].qty + ' ' + cart[i].name + '; ';
+    }
     setNameBuyProds(xname);
     setSubTotal(x.toString());
   }, [cart]);
@@ -69,9 +70,8 @@ export default function Checkout() {
   function handlePayment(e) {
     setPayment(e.target.value);
   }
-  const [payment, setPayment] = useState('');
-  const [shipping, setShipping] = useState('');
-  const [total, setTotal] = useState();
+  const [payment, setPayment] = useState('nada');
+  const [shipping, setShipping] = useState('nada');
   const [primerPrecio, setPrimerPrecio] = useState();
   useEffect(() => {
     var x = parseInt(subTotal);
@@ -92,24 +92,28 @@ export default function Checkout() {
     }
     setTotal(x);
   }, [payment, primerPrecio]);
+  const [total, setTotal] = useState();
+
   return (
     <>
-      <BackNav />
+      {/* <BackNav /> */}
       <div
         className='justify-content-center align-items-center d-flex mt-5'
         style={{ minHeight: '80vh' }}
       >
-        <div className='container'>
+        <div className='container text-center'>
+          <h1>Ultimos Pasos!</h1>
           <form
             action='http://menoscaosporfavorbackend.herokuapp.com/checkout'
             method='POST'
           >
-            <div className='row'>
+            <div className='row text-left'>
               <div className='col-md-4 col-sm-12 my-3'>
                 <div className='card p-3'>
                   <label className='form-label my-2'>
                     Opciones de Entrega
                     <select
+                      defaultValue='nada'
                       value={shipping}
                       onChange={handleShipping}
                       className='form-select'
@@ -118,7 +122,7 @@ export default function Checkout() {
                       name='shipping'
                       required
                     >
-                      <option defaultValue disabled value='nada'>
+                      <option disabled value='nada'>
                         Elegir forma de entrega/retiro
                       </option>
                       <option value='nueva cordoba'>
@@ -196,13 +200,13 @@ export default function Checkout() {
                   <label className='form-label my-2'>
                     Opciones de Pago{' '}
                     <select
+                      defaultValue='nada'
                       onChange={handlePayment}
                       className='form-select'
                       aria-label='Default select example'
                       id='payment'
                       name='payment'
                       required
-                      defaultValue='nada'
                       value={payment}
                     >
                       <option disabled value='nada'>
@@ -211,7 +215,7 @@ export default function Checkout() {
                       <option value='efectivo entrega'>
                         Efectivo en la entrega (Solo Cba. Capital)
                       </option>
-                      <option value='transferencia Bancaria'>
+                      <option value='transferencia bancaria'>
                         Transferencia Bancaria
                       </option>
                       <option value='mercado pago'>
@@ -222,16 +226,52 @@ export default function Checkout() {
                 </div>
               </div>
               <div className='col-md-8 col-sm-12 my-3'>
-                <div className='bg-white text-center'>
-                  <ShoppingCart subTotal={subTotal} />
-                  <h4 className='pb-3'>TOTAL: AR${total}</h4>
+                <div className='p-3 my-2'>
+                  En el momento que realices la compra te llegará un mail con la
+                  confirmacion de tu compra. Además nosotras nos vamos a
+                  comunicar con vos por tu instagram o whatsapp (?) para
+                  organizar la entrega!
                 </div>
+                <div className='bg-white text-center'>
+                  <ShoppingCart payment={payment} subTotal={subTotal} />
+                  <h4 className='py-3'>TOTAL: AR${total}</h4>
+                </div>
+                {payment === 'transferencia bancaria' && (
+                  <div className='border border-dark p-3 mt-4'>
+                    Nuestro CVU es:{' '}
+                    <div className='text-light bg-dark d-inline'>
+                      0000007900274075075470
+                    </div>{' '}
+                    y nuestro Alias:{' '}
+                    <div className='text-light bg-dark d-inline'>
+                      MENOSCAOSPORFAV.UALA
+                    </div>{' '}
+                    CUIL: 27407507547 . Cuando hagas la transferencia pasanos el
+                    comprobante por mensaje privado de Instagram en{' '}
+                    <a
+                      href='https://www.instagram.com/menoscaosporfavor/'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                    >
+                      @menoscaosporfavor
+                    </a>{' '}
+                  </div>
+                )}
               </div>
-            </div>{' '}
-            <input type='hidden' name='title' value={nameBuyProds} />
-            <input type='hidden' name='price' value={total} />
+            </div>
+
+            {nameBuyProds && (
+              <>
+                <input type='hidden' name='title' value={nameBuyProds} />{' '}
+                <input type='hidden' name='prods' value={nameBuyProds} />
+              </>
+            )}
+            {total && <input type='hidden' name='price' value={total} />}
             <input type='hidden' name='prods' value={nameBuyProds} />
           </form>
+          <Link to='/homepage'>
+            <p className='text-decoration-underline'> Volver al inicio</p>
+          </Link>
         </div>
       </div>
     </>
