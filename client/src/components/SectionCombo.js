@@ -8,7 +8,7 @@ export default function SectionCombo({ combo }) {
   const [loading, setLoading] = useState(true);
   const style = {
     width: '280px',
-    backgroundColor: 'white',
+    backgroundColor: '#fafafa',
   };
 
   const minHeightStyle = null;

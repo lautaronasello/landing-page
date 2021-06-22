@@ -10,7 +10,7 @@ export default function SectionProducts({ products }) {
   const style = {
     width: '280px',
     minHeight: '320px',
-    backgroundColor: 'white',
+    backgroundColor: '#fafafa',
   };
 
   const minHeightStyle = {
