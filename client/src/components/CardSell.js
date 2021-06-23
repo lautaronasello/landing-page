@@ -3,6 +3,7 @@ import Img from './img';
 import { db } from '../index';
 import firebase from 'firebase/app';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { toast } from 'react-toastify';
 
 export default function CardSell({
   name,
@@ -48,7 +49,7 @@ export default function CardSell({
         })
         .then(() => setOpenModal(false))
         .catch((e) => {
-          console.error('error: ', e);
+          alert.error('error: ', e);
         });
     } else {
       alert(
@@ -56,6 +57,19 @@ export default function CardSell({
       );
     }
   };
+
+  function modal() {
+    toast.success(`Agregaste ${name} al carrito!`, {
+      position: 'bottom-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    addToCart();
+  }
 
   return (
     <>
@@ -77,7 +91,7 @@ export default function CardSell({
           </div>
         </ModalBody>
         <ModalFooter>
-          <button className='btn btn-success' onClick={addToCart}>
+          <button className='btn btn-success' onClick={modal}>
             Agregar al Carrito
           </button>
         </ModalFooter>

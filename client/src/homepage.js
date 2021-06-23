@@ -14,6 +14,8 @@ import axios from 'axios';
 import SectionProducts from './components/SectionProducts';
 import Navigate from './components/navigate';
 import firebase from 'firebase/app';
+import { ToastContainer } from 'react-toastify';
+
 export default function HomePage() {
   const [primerUser, setPrimerUser] = useState();
   const [loading, setLoading] = useState(true);
@@ -225,6 +227,17 @@ export default function HomePage() {
           </Row>
           <Footer />
         </Container>
+        <ToastContainer
+          position='bottom-right'
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
       </Fragment>
     );
   }

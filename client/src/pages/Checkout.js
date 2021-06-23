@@ -3,6 +3,10 @@ import ShoppingCart from '../components/ShoppingCart';
 import { db } from '../index';
 import firebase from 'firebase/app';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import SectionProducts from '../components/SectionProducts';
+import { ToastContainer } from 'react-toastify';
+import BackNav from '../components/back-nav';
 
 export default function Checkout() {
   const [database, setDatabase] = useState('data');
@@ -10,6 +14,20 @@ export default function Checkout() {
   const [email, setEmail] = useState('');
   const [instagram, setInstagram] = useState('');
   const [phone, setPhone] = useState('');
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    let canceled;
+    const getProducts = async () => {
+      const res = await axios.get('http://localhost:1337/products', {
+        canceledToken: new axios.CancelToken((c) => (canceled = c)),
+      });
+      setProducts(res.data);
+    };
+    getProducts();
+
+    return () => canceled;
+  }, []);
 
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -96,7 +114,7 @@ export default function Checkout() {
 
   return (
     <>
-      {/* <BackNav /> */}
+      <BackNav />
       <div
         className='justify-content-center align-items-center d-flex mt-5'
         style={{ minHeight: '80vh' }}
@@ -266,7 +284,7 @@ export default function Checkout() {
                 <input type='hidden' name='prods' value={nameBuyProds} />
               </>
             )}
-            {total && <input type='hidden' name='price' value={total} />}
+            {total !== 0 && <input type='hidden' name='price' value={total} />}
             <input type='hidden' name='prods' value={nameBuyProds} />
           </form>
           <Link to='/homepage'>
@@ -274,6 +292,21 @@ export default function Checkout() {
           </Link>
         </div>
       </div>
+      <div className='container text-center' style={{ marginTop: '' }}>
+        <h3>Suma mas productos a tu carrito!</h3>
+        <SectionProducts products={products} />
+      </div>
+      <ToastContainer
+        position='bottom-right'
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 }

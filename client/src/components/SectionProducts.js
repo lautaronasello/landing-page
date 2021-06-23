@@ -13,10 +13,6 @@ export default function SectionProducts({ products }) {
     backgroundColor: '#fafafa',
   };
 
-  const minHeightStyle = {
-    minHeight: '65px',
-  };
-
   const breakPoints = [
     { width: 1, itemsToShow: 1, pagination: false },
     { width: 550, itemsToShow: 2, pagination: false },
@@ -62,7 +58,6 @@ export default function SectionProducts({ products }) {
                     data={data}
                     description={data.description}
                     id={data.id}
-                    minHeightStyle={minHeightStyle}
                     classNameH5Div={
                       data.stock > 0
                         ? 'pt-1 ps-3 justify-content-center align-items-center d-flex'

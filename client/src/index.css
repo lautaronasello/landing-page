@@ -195,3 +195,12 @@ p {
 .heightProducts {
   max-height: 350px !important;
 }
+
+.Toastify__toast--success {
+  background: rgb(240, 194, 159) !important;
+  color: #766b62;
+}
+
+.Toastify__progress-bar {
+  background-color: #ecd3c0 !important;
+}

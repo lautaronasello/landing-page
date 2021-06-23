@@ -11,9 +11,6 @@ export default function SectionCombo({ combo }) {
     backgroundColor: '#fafafa',
   };
 
-  const minHeightStyle = null;
-  // minHeight: '135px',
-
   const breakPoints = [
     { width: 1, itemsToShow: 1, pagination: false },
     { width: 550, itemsToShow: 2, itemsToScroll: 2, pagination: false },
@@ -57,7 +54,6 @@ export default function SectionCombo({ combo }) {
                   key={data.id}
                   id={data.id}
                   description={data.description}
-                  minHeightStyle={minHeightStyle}
                   classNameH5Div={'ps-3 pt-1'}
                 />
               </Item>

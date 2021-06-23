@@ -20,7 +20,6 @@ export default function ShoppingCart({ subTotal }) {
       querySnapshot.forEach((doc) => {
         p.push(doc.data());
       });
-
       setCart(p);
     });
   }, [database]);
