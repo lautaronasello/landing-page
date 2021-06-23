@@ -35,9 +35,12 @@ export default function HomePage() {
   useEffect(() => {
     let cancel;
     const getCombos = async () => {
-      const res = await axios.get('http://localhost:1337/combos', {
-        cancelToken: new axios.CancelToken((c) => (cancel = c)),
-      });
+      const res = await axios.get(
+        'https://menoscaosporfavorstrapi.herokuapp.com/combos',
+        {
+          cancelToken: new axios.CancelToken((c) => (cancel = c)),
+        }
+      );
       setCombo(res.data);
     };
     getCombos();
@@ -47,9 +50,12 @@ export default function HomePage() {
   useEffect(() => {
     let canceled;
     const getProducts = async () => {
-      const res = await axios.get('http://localhost:1337/products', {
-        canceledToken: new axios.CancelToken((c) => (canceled = c)),
-      });
+      const res = await axios.get(
+        'https://menoscaosporfavorstrapi.herokuapp.com/products',
+        {
+          canceledToken: new axios.CancelToken((c) => (canceled = c)),
+        }
+      );
       setProducts(res.data);
     };
     getProducts();
