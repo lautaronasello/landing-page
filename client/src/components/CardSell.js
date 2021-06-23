@@ -51,23 +51,24 @@ export default function CardSell({
         .catch((e) => {
           alert.error('error: ', e);
         });
+      toast.success(`Agregaste ${name} al carrito!`, {
+        position: 'bottom-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } else {
       alert(
         'Necesitas estar conectado con una cuenta de Gmail para poder comprar'
       );
+      setOpenModal(false);
     }
   };
 
   function modal() {
-    toast.success(`Agregaste ${name} al carrito!`, {
-      position: 'bottom-right',
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
     addToCart();
   }
 

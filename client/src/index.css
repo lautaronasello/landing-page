@@ -176,19 +176,19 @@ p {
   transition: all 0.45s;
 }
 
-.cGKbZh:hover:enabled,
-.cGKbZh:focus:enabled {
+.rec-arrow:hover:enabled,
+.rec-arrow:focus:enabled {
   color: #fff;
   background-color: #ecd3c0 !important;
   box-shadow: 0 0 2px 0 #333;
 }
 
-.ejXxNI {
-  background-color: #ecd3c0 !important;
+/* .ejXxNI {
+  background-color: red !important;
   box-shadow: 0 0 1px 3px #ecd3c0 !important;
-}
+} */
 
-.jCKguF {
+.rec-carousel {
   height: 500px !important;
 }
 
